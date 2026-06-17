@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dond' Javier — Restaurante de cocina norteña peruana. La cocina es un arte que se disfruta en cada bocado. Pedidos y reservas al +51 936 594 222.">
+    <meta name="theme-color" content="#cc1a1a">
+    <title>Dond' Javier | Restaurante Norteño</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Hoja de estilos principal -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     LOADER
+══════════════════════════════════════ -->
+<div id="page-loader" aria-hidden="true">
+    <div class="loader-logo">Dond' Javier</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+</div>
+
+<!-- ══════════════════════════════════════
+     CURSORES
+══════════════════════════════════════ -->
+<div id="cursor-dot"  aria-hidden="true"></div>
+<div id="cursor-ring" aria-hidden="true"></div>
+
+<!-- ══════════════════════════════════════
+     NAVBAR STICKY
+══════════════════════════════════════ -->
+<div class="navbar-sticky" id="stickyNav" role="navigation" aria-label="Navegación principal sticky">
+    <a href="#hero" class="nav-logo-wrap" aria-label="Inicio">
+        <img src="assets/logo-dond-javier.png" alt="Logo Dond' Javier" class="nav-logo-img"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='inline'">
+        <span class="nav-logo-text" style="display:none">Dond' Javier</span>
+    </a>
+    <nav>
+        <a href="#hero">Inicio</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#carta-completa">Carta</a>
+        <a href="#menu">Menú</a>
+        <a href="#galeria">Galería</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+</div>
+
+<!-- ══════════════════════════════════════
+     MENÚ MÓVIL
+══════════════════════════════════════ -->
+<div class="mobile-nav-overlay" id="mobileNav" role="dialog" aria-label="Menú de navegación móvil">
+    <a href="#hero" class="mobile-nav-link">Inicio</a>
+    <a href="#nosotros" class="mobile-nav-link">Nosotros</a>
+    <a href="#carta-completa" class="mobile-nav-link">Carta</a>
+    <a href="#menu" class="mobile-nav-link">Menú</a>
+    <a href="#galeria" class="mobile-nav-link">Galería</a>
+    <a href="#contacto" class="mobile-nav-link">Contacto</a>
+</div>
+
+<!-- ══════════════════════════════════════
+     HERO — VIDEO HEADER
+══════════════════════════════════════ -->
+<header id="hero" role="banner">
+
+    <div class="hero-video-wrap" aria-hidden="true">
+        <video autoplay muted loop playsinline preload="auto" poster="">
+            <source src="assets/videoheader.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Navbar principal -->
+    <nav class="navbar" aria-label="Navegación principal">
+        <a href="#hero" class="navbar-logo" aria-label="Dond' Javier - Inicio">
+            <img src="assets/logo-dond-javier.png"
+                 alt="Logo Dond' Javier"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <span class="logo-text-fallback" style="display:none">Dond' Javier</span>
+        </a>
+        <ul class="navbar-nav" role="list">
+            <li><a href="#hero">Inicio</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#carta-completa">Carta</a></li>
+            <li><a href="#menu">Menú</a></li>
+            <li><a href="#galeria">Galería</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <a href="#carta-completa" class="navbar-cta">Ver carta</a>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Contenido hero -->
+    <div class="hero-content">
+        <p class="hero-eyebrow">Restaurante — Perú</p>
+        <div class="hero-logo-wrap">
+            <img src="assets/logo-dond-javier.png" alt="Dond' Javier" class="hero-logo-img"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <h1 class="hero-title hero-title-fallback" style="display:none">
+                Dond'<span>Javier</span>
+            </h1>
+        </div>
+        <p class="hero-subtitle">La cocina es un arte que se disfruta en cada bocado</p>
+        <div class="hero-actions">
+            <a href="#carta-completa" class="btn-primary">
+                <i class="fas fa-utensils" aria-hidden="true"></i> Ver nuestra carta
+            </a>
+            <a href="https://wa.me/51936594222?text=Hola!+Quisiera+hacer+una+reserva"
+               class="btn-outline"
+               target="_blank" rel="noopener">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i> Reservar mesa
+            </a>
+        </div>
+    </div>
+
+    <div class="hero-badges" aria-hidden="true">
+        <div class="hero-badge"><i class="fas fa-clock"></i><span>Lun – Dom · 12:00–22:00</span></div>
+        <div class="hero-badge"><i class="fas fa-map-marker-alt"></i><span>Trujillo, La Libertad, Perú</span></div>
+        <div class="hero-badge"><i class="fas fa-star"></i><span>Sabor norteño auténtico</span></div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+        <span>Descubrir</span>
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</header>
+
+
+<!-- ══════════════════════════════════════
+     SECCIÓN NOSOTROS (fondo personalizado)
+══════════════════════════════════════ -->
+<section id="nosotros" class="bg-fondo section-custom-bg" aria-labelledby="nosotros-title"
+    style="--section-bg:url('assets/diseno-fondo.jpg')">
+    <div class="nosotros-grid">
+
+        <div class="sr sr-left">
+            <p class="section-label">Nuestra historia</p>
+            <h2 class="section-title-lg" id="nosotros-title">
+                Tradición norteña en <em>cada bocado</em>
+            </h2>
+            <p class="section-body">
+                Dond' Javier nació de la pasión por la cocina norteña y el respeto profundo por los
+                ingredientes auténticos de nuestra región. Desde nuestros inicios, llevamos a la mesa
+                los sabores que identifican al norte peruano: el limón sutil, el ají limo, la chicha
+                de jora y los mariscos frescos del Pacífico.
+            </p>
+            <p class="section-body">
+                Javier, nuestro chef ejecutivo, te invita a disfrutar una experiencia única donde
+                cada plato nace de la pasión por la buena cocina y el respeto por los ingredientes.
+                Recetas familiares que nos han acompañado por más de dos décadas.
+            </p>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-num"><span class="counter" data-target="20">0</span>+</div>
+                    <div class="stat-label">Años de experiencia</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num"><span class="counter" data-target="60">0</span>+</div>
+                    <div class="stat-label">Platos en carta</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num"><span class="counter" data-target="5000">0</span>+</div>
+                    <div class="stat-label">Clientes felices</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="nosotros-visual sr sr-right">
+            <div class="nosotros-img-wrap">
+                <img src="assets/restaurante-foto.png" alt="Interior Dond' Javier"
+                     style="width:100%;height:100%;object-fit:cover;"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                <div class="nosotros-img-placeholder" style="display:none">🍽️</div>
+            </div>
+            <div class="nosotros-badge-float">
+                <strong>+20</strong>
+                <span>Años de sabor</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CARTA COMPLETA (fondo personalizado)
+══════════════════════════════════════ -->
+<section id="carta-completa" class="bg-fondo section-custom-bg" aria-labelledby="carta-title"
+    style="--section-bg:url('assets/diseno-fondo.jpg')">
+    <div class="carta-container">
+
+        <div class="carta-header sr">
+            <p class="section-label" style="justify-content:center">Lo que ofrecemos</p>
+            <h2 class="section-title-center" id="carta-title">
+                Nuestra <em>Carta Completa</em>
+            </h2>
+            <p class="section-desc">
+                Es un honor recibirlos y compartir una propuesta culinaria creada con
+                dedicación, sabor y autenticidad.
+            </p>
+        </div>
+
+        <!-- TABS de categoría -->
+        <div class="carta-tabs" role="tablist">
+            <button class="carta-tab-btn active" data-tab="picar"     role="tab">Para Picar</button>
+            <button class="carta-tab-btn"         data-tab="rondas"   role="tab">Rondas</button>
+            <button class="carta-tab-btn"         data-tab="duos"     role="tab">Duos y Trios</button>
+            <button class="carta-tab-btn"         data-tab="crocantes"role="tab">Crocantes</button>
+            <button class="carta-tab-btn"         data-tab="marinos"  role="tab">Engreídos Marinos</button>
+            <button class="carta-tab-btn"         data-tab="carnes"   role="tab">Carnes y Pollo</button>
+            <button class="carta-tab-btn"         data-tab="chifa"    role="tab">Toque Chifa</button>
+            <button class="carta-tab-btn"         data-tab="cilindro" role="tab">Cilindro</button>
+            <button class="carta-tab-btn"         data-tab="bebidas"  role="tab">Bebidas</button>
+        </div>
+
+        <!-- PANEL: Para Picar -->
+        <div class="carta-panel active" id="panel-picar">
+            <h3 class="carta-section-title">Para Picar</h3>
+            <div class="carta-table-wrap">
+                <table class="carta-table">
+                    <thead>
+                        <tr>
+                            <th>Plato</th>
+                            <th>Personal</th>
+                            <th>Mediana</th>
+                            <th>Grande</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Ceviche de Filete</td><td>S/ 25</td><td>S/ 40</td><td>S/ 60</td></tr>
+                        <tr><td>Ceviche Mixto</td><td>S/ 25</td><td>S/ 40</td><td>S/ 60</td></tr>
+                        <tr><td>Ceviche Mixto c/ Conchas</td><td>S/ 28</td><td>S/ 40</td><td>S/ 60</td></tr>
+                        <tr><td>Ceviche de Congrio</td><td>S/ 30</td><td>S/ 45</td><td>S/ 60</td></tr>
+                        <tr><td>Ceviche de Caballa</td><td>S/ 25</td><td>S/ 40</td><td>S/ 60</td></tr>
+                        <tr><td>Ceviche de Conchas Negras</td><td>S/ 30</td><td>S/ 40</td><td>—</td></tr>
+                        <tr><td>Ceviche de Filete y Conchas N.</td><td>S/ 30</td><td>S/ 45</td><td>—</td></tr>
+                        <tr><td>Tiradito de Filete</td><td>S/ 30</td><td>—</td><td>S/ 50</td></tr>
+                        <tr><td>Causa c/ Langostino</td><td>S/ 20</td><td>—</td><td>—</td></tr>
+                        <tr><td>Causa c/ Pollo</td><td>S/ 20</td><td>—</td><td>—</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PANEL: Rondas -->
+        <div class="carta-panel" id="panel-rondas">
+            <h3 class="carta-section-title">Rondas Marinas y Criollas</h3>
+            <div class="carta-table-wrap">
+                <table class="carta-table">
+                    <thead>
+                        <tr><th>Ronda</th><th>Incluye</th><th>Mediana</th><th>Grande</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ronda Criolla</td>
+                            <td style="font-size:.8rem;color:rgba(255,255,255,.45);font-style:italic">Majadito de yuca c/ costillas / seco de Chabelo / cecina / chorizo / rellenas</td>
+                            <td>S/ 60</td><td>S/ 90</td>
+                        </tr>
+                        <tr>
+                            <td>Ronda Marina</td>
+                            <td style="font-size:.8rem;color:rgba(255,255,255,.45);font-style:italic">Ceviche filete / Arroz c/ mariscos / ceviche / causa / langostinos</td>
+                            <td>S/ 60</td><td>S/ 90</td>
+                        </tr>
+                        <tr>
+                            <td>Ronda Mar y Tierra</td>
+                            <td style="font-size:.8rem;color:rgba(255,255,255,.45);font-style:italic">Arroz c/ mariscos / ceviche filete / causa de pollo / chicharrón de pollo</td>
+                            <td>S/ 60</td><td>S/ 90</td>
+                        </tr>
+                        <tr>
+                            <td>Ronda de Barrio</td>
+                            <td style="font-size:.8rem;color:rgba(255,255,255,.45);font-style:italic">Ceviche caballa / papa la huancaína / chaufa 3 sabores / brocheta de pollo</td>
+                            <td>S/ 55</td><td>S/ 85</td>
+                        </tr>
+                        <tr>
+                            <td>Costillas de Cerdo</td>
+                            <td style="font-size:.8rem;color:rgba(255,255,255,.45);font-style:italic">Majadito de yuca y patacones</td>
+                            <td>S/ 25</td><td>S/ 45</td>
+                        </tr>
+                        <tr>
+                            <td>Seco de Chavelo</td>
+                            <td style="font-size:.8rem;color:rgba(255,255,255,.45);font-style:italic"></td>
+                            <td>S/ 28</td><td>S/ 45</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PANEL: Duos y Trios -->
+        <div class="carta-panel" id="panel-duos">
+            <h3 class="carta-section-title">Duos y Trios</h3>
+            <div class="carta-table-wrap">
+                <table class="carta-table">
+                    <thead>
+                        <tr><th>Combo</th><th>Incluye</th><th>Mediana</th><th>Grande</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Duo Marino / Criollo</td>
+                            <td style="font-size:.8rem;color:rgba(255,255,255,.45);font-style:italic">Seco de chavelo y ceviche</td>
+                            <td>S/ 30</td><td>S/ 45</td>
+                        </tr>
+                        <tr>
+                            <td>Duo Marino</td>
+                            <td style="font-size:.8rem;color:rgba(255,255,255,.45);font-style:italic">Ceviche y arroz con mariscos</td>
+                            <td>S/ 30</td><td>S/ 45</td>
+                        </tr>
+                        <tr>
+                            <td>Duo Marino</td>
+                            <td style="font-size:.8rem;color:rgba(255,255,255,.45);font-style:italic">Ceviche y chicharrón de pescado</td>
+                            <td>S/ 30</td><td>S/ 45</td>
+                        </tr>
+                        <tr>
+                            <td>Trio Marino</td>
+                            <td style="font-size:.8rem;color:rgba(255,255,255,.45);font-style:italic">Ceviche / arroz c/ mariscos / chicharrón</td>
+                            <td>S/ 45</td><td>S/ 55</td>
+                        </tr>
+                        <tr>
+                            <td>Trio Marino / Criollo</td>
+                            <td style="font-size:.8rem;color:rgba(255,255,255,.45);font-style:italic">Ceviche / causa de pollo / chicharrón de pollo</td>
+                            <td>S/ 45</td><td>S/ 55</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PANEL: Crocantes -->
+        <div class="carta-panel" id="panel-crocantes">
+            <h3 class="carta-section-title">Crocantes</h3>
+            <div class="carta-table-wrap">
+                <table class="carta-table">
+                    <thead>
+                        <tr><th>Plato</th><th>Personal</th><th>Mediana</th><th>Grande</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Chicharrón de Pollo</td><td>S/ 20</td><td>S/ 35</td><td>S/ 55</td></tr>
+                        <tr><td>Chicharrón de Pescado</td><td>S/ 25</td><td>S/ 35</td><td>S/ 50</td></tr>
+                        <tr><td>El Chicharrón Mixto</td><td>S/ 25</td><td>S/ 35</td><td>S/ 55</td></tr>
+                        <tr><td>Jalea Mixta</td><td>S/ 45</td><td>—</td><td>—</td></tr>
+                        <tr><td>Cabrilla Frita c/ Yuca o Patacones</td><td>S/ 30</td><td>—</td><td>—</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PANEL: Engreídos Marinos -->
+        <div class="carta-panel" id="panel-marinos">
+            <h3 class="carta-section-title">Engreídos Marinos</h3>
+            <div class="carta-table-wrap">
+                <table class="carta-table">
+                    <thead>
+                        <tr><th>Plato</th><th>Personal</th><th>Grande</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Parihuela con Cabrilla</td><td>S/ 50</td><td>S/ 70</td></tr>
+                        <tr><td>Parihuela con Mero</td><td>S/ 60</td><td>S/ 80</td></tr>
+                        <tr><td>Sudado de Mero</td><td>S/ 35</td><td>S/ 60</td></tr>
+                        <tr><td>Sudado de Cabrillón</td><td>S/ 40</td><td>S/ 65</td></tr>
+                        <tr><td>Chupe de Cangrejo</td><td>S/ 20</td><td>S/ 35</td></tr>
+                        <tr><td>Sudado de Cabrilla</td><td>S/ 28</td><td>S/ 45</td></tr>
+                        <tr><td>Arroz con Mariscos</td><td>S/ 25</td><td>—</td></tr>
+                        <tr><td>Arroz con Conchas</td><td>S/ 25</td><td>—</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PANEL: Carnes y Pollo -->
+        <div class="carta-panel" id="panel-carnes">
+            <h3 class="carta-section-title">Carnes y Pollo</h3>
+            <div class="carta-table-wrap">
+                <table class="carta-table">
+                    <thead>
+                        <tr><th>Plato</th><th>Personal</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Lomo Saltado c/ Arroz y Papa</td><td>S/ 28</td></tr>
+                        <tr><td>Pollo Saltado c/ Arroz y Papa</td><td>S/ 20</td></tr>
+                        <tr><td>Fetuccini a la H. con Lomo Saltado</td><td>S/ 28</td></tr>
+                        <tr><td>Milanesa de Pollo c/ Arroz y Papa</td><td>S/ 20</td></tr>
+                        <tr><td>Cecina c/ Arroz y Patacones</td><td>S/ 20</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PANEL: Toque Chifa -->
+        <div class="carta-panel" id="panel-chifa">
+            <h3 class="carta-section-title">Toque Chifa</h3>
+            <div class="carta-table-wrap">
+                <table class="carta-table">
+                    <thead>
+                        <tr><th>Plato</th><th>Personal</th><th>Grande</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Chaufa de Pollo</td><td>S/ 20</td><td>S/ 35</td></tr>
+                        <tr><td>Chaufa de Tres Sabores</td><td>S/ 20</td><td>S/ 35</td></tr>
+                        <tr><td>Chaufa de Mariscos</td><td>S/ 25</td><td>S/ 35</td></tr>
+                        <tr><td>Aeropuerto</td><td>S/ 20</td><td>S/ 35</td></tr>
+                        <tr><td>Alitas Agridulce o Acevichada</td><td>S/ 17</td><td>S/ 30</td></tr>
+                        <tr><td>Costillas Agridulce</td><td>S/ 25</td><td>S/ 45</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PANEL: Cilindro -->
+        <div class="carta-panel" id="panel-cilindro">
+            <h3 class="carta-section-title">Cilindro</h3>
+            <p class="carta-subtitle">Pollo al cilindro estilo broster</p>
+            <div class="carta-table-wrap">
+                <table class="carta-table">
+                    <thead>
+                        <tr><th>Presentación</th><th>Precio</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Pollo Entero</td><td>Precio a consultar</td></tr>
+                        <tr><td>1/2 Pollo</td><td>Precio a consultar</td></tr>
+                        <tr><td>1/4 Pollo</td><td>Precio a consultar</td></tr>
+                        <tr><td>Mostrito</td><td>S/ 15</td></tr>
+                        <tr><td>Broaster</td><td>S/ 12</td></tr>
+                        <tr><td>Porción de Arroz</td><td>S/ 4</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- PANEL: Bebidas -->
+        <div class="carta-panel" id="panel-bebidas">
+            <h3 class="carta-section-title">Bebidas</h3>
+            <div class="carta-table-wrap">
+                <table class="carta-table">
+                    <thead>
+                        <tr><th>Bebida</th><th>Precio</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Limonada Frozen 1 Lt</td><td>S/ 10</td></tr>
+                        <tr><td>Jugos de Fruta Natural</td><td>Consultar</td></tr>
+                        <tr><td>Gaseosa</td><td>Consultar</td></tr>
+                        <tr><td>Cerveza</td><td>Consultar</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     MÉTODOS DE PAGO
+══════════════════════════════════════ -->
+<section id="pagos" aria-label="Métodos de pago">
+    <div class="pagos-container">
+        <span class="pagos-label">Métodos de pago</span>
+        <div class="pago-item">
+            <i class="fas fa-mobile-alt"></i>
+            <div>
+                <span>YAPE / PLIN</span>
+                <strong>936 594 222</strong>
+            </div>
+        </div>
+        <div class="pago-item">
+            <i class="fas fa-university"></i>
+            <div>
+                <span>Transferencia Bancaria</span>
+            </div>
+        </div>
+        <div class="pago-item">
+            <i class="fas fa-credit-card"></i>
+            <div>
+                <span>Tarjetas de Crédito</span>
+                <strong>y Débito</strong>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     MENÚ DESTACADO (sin fondo de imagen, según diseño original)
+══════════════════════════════════════ -->
+<section id="menu" class="section-custom-bg" aria-labelledby="menu-title">
+    <div class="menu-container">
+
+        <div class="menu-header sr">
+            <p class="section-label">Destacados</p>
+            <h2 class="section-title-center" id="menu-title">
+                Platos <em>imperdibles</em>
+            </h2>
+            <p class="section-desc">
+                Una selección de nuestros platos más pedidos, preparados con ingredientes
+                frescos y la sazón que nos distingue.
+            </p>
+        </div>
+
+        <div class="menu-filters sr" role="group" aria-label="Filtrar por categoría">
+            <button class="filter-btn active" data-filter="all" aria-pressed="true"><span>Todos</span></button>
+            <button class="filter-btn" data-filter="Entradas" aria-pressed="false"><span>Entradas</span></button>
+            <button class="filter-btn" data-filter="Fondos" aria-pressed="false"><span>Fondos</span></button>
+            <button class="filter-btn" data-filter="Bebidas" aria-pressed="false"><span>Bebidas</span></button>
+            <button class="filter-btn" data-filter="Crocantes" aria-pressed="false"><span>Crocantes</span></button>
+        </div>
+
+        <div class="menu-grid" id="menuGrid" role="list">
+
+            <article class="card-plato sr" role="listitem" data-categoria="Entradas" data-id="1"
+                data-nombre="Ceviche de Filete" data-precio="25"
+                data-desc="Filete fresco marinado en limón sutil, ají limo, cebolla roja y choclo. El clásico de la casa."
+                data-emoji="🐟" style="transition-delay:0ms" tabindex="0"
+                aria-label="Ceviche de Filete, S/ 25">
+                <div class="card-img-area" aria-hidden="true">
+                    <span class="card-badge">Estrella</span>
+                    <span style="line-height:1">🐟</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-categoria">Entradas</p>
+                    <h3 class="card-nombre">Ceviche de Filete</h3>
+                    <p class="card-desc">Filete fresco marinado en limón sutil, ají limo, cebolla roja y choclo. El clásico de la casa.</p>
+                    <div class="card-footer">
+                        <div class="card-precio"><sup>S/</sup>25</div>
+                        <button class="btn-pedir" data-nombre="Ceviche de Filete" data-precio="25"
+                            aria-label="Pedir Ceviche de Filete por WhatsApp">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i> Pedir
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card-plato sr" role="listitem" data-categoria="Entradas" data-id="2"
+                data-nombre="Ceviche Mixto c/ Conchas" data-precio="28"
+                data-desc="Mixtura de mariscos frescos con conchas negras marinados en nuestra salsa secreta de ají limo."
+                data-emoji="🦪" style="transition-delay:60ms" tabindex="0"
+                aria-label="Ceviche Mixto c/ Conchas, S/ 28">
+                <div class="card-img-area" aria-hidden="true">
+                    <span class="card-badge">Popular</span>
+                    <span style="line-height:1">🦪</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-categoria">Entradas</p>
+                    <h3 class="card-nombre">Ceviche Mixto c/ Conchas</h3>
+                    <p class="card-desc">Mixtura de mariscos frescos con conchas negras marinados en nuestra salsa secreta de ají limo.</p>
+                    <div class="card-footer">
+                        <div class="card-precio"><sup>S/</sup>28</div>
+                        <button class="btn-pedir" data-nombre="Ceviche Mixto c/ Conchas" data-precio="28"
+                            aria-label="Pedir Ceviche Mixto c/ Conchas por WhatsApp">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i> Pedir
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card-plato sr" role="listitem" data-categoria="Fondos" data-id="3"
+                data-nombre="Parihuela con Cabrilla" data-precio="50"
+                data-desc="Caldo marino concentrado con cabrilla fresca, mariscos, ají panka y hierbas aromáticas. Un abrazo del mar."
+                data-emoji="🍲" style="transition-delay:120ms" tabindex="0"
+                aria-label="Parihuela con Cabrilla, S/ 50">
+                <div class="card-img-area" aria-hidden="true">
+                    <span class="card-badge">Recomendado</span>
+                    <span style="line-height:1">🍲</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-categoria">Fondos</p>
+                    <h3 class="card-nombre">Parihuela con Cabrilla</h3>
+                    <p class="card-desc">Caldo marino concentrado con cabrilla fresca, mariscos, ají panka y hierbas aromáticas. Un abrazo del mar.</p>
+                    <div class="card-footer">
+                        <div class="card-precio"><sup>S/</sup>50</div>
+                        <button class="btn-pedir" data-nombre="Parihuela con Cabrilla" data-precio="50"
+                            aria-label="Pedir Parihuela con Cabrilla por WhatsApp">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i> Pedir
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card-plato sr" role="listitem" data-categoria="Fondos" data-id="4"
+                data-nombre="Ronda Criolla" data-precio="60"
+                data-desc="Majadito de yuca c/ costillas, seco de Chabelo, cecina, chorizo y rellenas. Para compartir."
+                data-emoji="🍖" style="transition-delay:180ms" tabindex="0"
+                aria-label="Ronda Criolla, S/ 60">
+                <div class="card-img-area" aria-hidden="true">
+                    <span class="card-badge">Para Compartir</span>
+                    <span style="line-height:1">🍖</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-categoria">Fondos</p>
+                    <h3 class="card-nombre">Ronda Criolla</h3>
+                    <p class="card-desc">Majadito de yuca c/ costillas, seco de Chabelo, cecina, chorizo y rellenas. Para compartir.</p>
+                    <div class="card-footer">
+                        <div class="card-precio"><sup>S/</sup>60</div>
+                        <button class="btn-pedir" data-nombre="Ronda Criolla" data-precio="60"
+                            aria-label="Pedir Ronda Criolla por WhatsApp">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i> Pedir
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card-plato sr" role="listitem" data-categoria="Crocantes" data-id="5"
+                data-nombre="Chicharrón Mixto" data-precio="25"
+                data-desc="El mejor chicharrón mixto de la ciudad: pollo y pescado crujientes con yuca frita y salsa criolla."
+                data-emoji="🍗" style="transition-delay:240ms" tabindex="0"
+                aria-label="Chicharrón Mixto, S/ 25">
+                <div class="card-img-area" aria-hidden="true">
+                    <span class="card-badge">Crujiente</span>
+                    <span style="line-height:1">🍗</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-categoria">Crocantes</p>
+                    <h3 class="card-nombre">Chicharrón Mixto</h3>
+                    <p class="card-desc">El mejor chicharrón mixto de la ciudad: pollo y pescado crujientes con yuca frita y salsa criolla.</p>
+                    <div class="card-footer">
+                        <div class="card-precio"><sup>S/</sup>25</div>
+                        <button class="btn-pedir" data-nombre="Chicharrón Mixto" data-precio="25"
+                            aria-label="Pedir Chicharrón Mixto por WhatsApp">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i> Pedir
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card-plato sr" role="listitem" data-categoria="Fondos" data-id="6"
+                data-nombre="Chaufa de Mariscos" data-precio="25"
+                data-desc="Arroz chaufa wok con mix de mariscos frescos del Pacífico al estilo chifa. Fusion perfecta."
+                data-emoji="🍜" style="transition-delay:300ms" tabindex="0"
+                aria-label="Chaufa de Mariscos, S/ 25">
+                <div class="card-img-area" aria-hidden="true">
+                    <span class="card-badge">Nuevo</span>
+                    <span style="line-height:1">🍜</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-categoria">Fondos</p>
+                    <h3 class="card-nombre">Chaufa de Mariscos</h3>
+                    <p class="card-desc">Arroz chaufa wok con mix de mariscos frescos del Pacífico al estilo chifa. Fusion perfecta.</p>
+                    <div class="card-footer">
+                        <div class="card-precio"><sup>S/</sup>25</div>
+                        <button class="btn-pedir" data-nombre="Chaufa de Mariscos" data-precio="25"
+                            aria-label="Pedir Chaufa de Mariscos por WhatsApp">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i> Pedir
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card-plato sr" role="listitem" data-categoria="Bebidas" data-id="7"
+                data-nombre="Limonada Frozen 1 Lt" data-precio="10"
+                data-desc="Limonada frozen de limón sutil de la región, helada y refrescante. La compañera perfecta."
+                data-emoji="🍋" style="transition-delay:360ms" tabindex="0"
+                aria-label="Limonada Frozen 1 Lt, S/ 10">
+                <div class="card-img-area" aria-hidden="true">
+                    <span class="card-badge">Artesanal</span>
+                    <span style="line-height:1">🍋</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-categoria">Bebidas</p>
+                    <h3 class="card-nombre">Limonada Frozen 1 Lt</h3>
+                    <p class="card-desc">Limonada frozen de limón sutil de la región, helada y refrescante. La compañera perfecta.</p>
+                    <div class="card-footer">
+                        <div class="card-precio"><sup>S/</sup>10</div>
+                        <button class="btn-pedir" data-nombre="Limonada Frozen 1 Lt" data-precio="10"
+                            aria-label="Pedir Limonada Frozen 1 Lt por WhatsApp">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i> Pedir
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="card-plato sr" role="listitem" data-categoria="Crocantes" data-id="8"
+                data-nombre="Jalea Mixta" data-precio="45"
+                data-desc="Jalea mixta de mariscos y pescado frita en su punto perfecto, con yuca y ensalada criolla."
+                data-emoji="🦐" style="transition-delay:420ms" tabindex="0"
+                aria-label="Jalea Mixta, S/ 45">
+                <div class="card-img-area" aria-hidden="true">
+                    <span class="card-badge">Especial</span>
+                    <span style="line-height:1">🦐</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-categoria">Crocantes</p>
+                    <h3 class="card-nombre">Jalea Mixta</h3>
+                    <p class="card-desc">Jalea mixta de mariscos y pescado frita en su punto perfecto, con yuca y ensalada criolla.</p>
+                    <div class="card-footer">
+                        <div class="card-precio"><sup>S/</sup>45</div>
+                        <button class="btn-pedir" data-nombre="Jalea Mixta" data-precio="45"
+                            aria-label="Pedir Jalea Mixta por WhatsApp">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i> Pedir
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- Modal detalle plato -->
+<div class="card-detail-overlay" id="cardDetailOverlay" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+    <div class="card-detail-box" id="cardDetailBox">
+        <button id="detail-close-x" aria-label="Cerrar detalle"><i class="fas fa-times"></i></button>
+        <div class="card-detail-emoji" id="detailEmoji" aria-hidden="true"></div>
+        <div class="card-detail-content">
+            <h3 id="detailTitle"></h3>
+            <p id="detailDesc"></p>
+            <div class="card-detail-actions">
+                <button class="btn-close-detail" id="detailClose">Cerrar</button>
+                <button class="btn-pedir" id="detailPedir" style="flex:1;justify-content:center">
+                    <i class="fab fa-whatsapp"></i> Pedir ahora
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     GALERÍA (fondo personalizado)
+══════════════════════════════════════ -->
+<section id="galeria" class="bg-fondo section-custom-bg" aria-labelledby="galeria-title"
+    style="--section-bg:url('assets/diseno-fondo2.jpg')">
+    <div class="galeria-container">
+        <div class="galeria-header sr">
+            <p class="section-label" style="justify-content:center">Momentos memorables</p>
+            <h2 class="section-title-center" id="galeria-title">
+                Un vistazo a <em>Dond' Javier</em>
+            </h2>
+        </div>
+        <div class="galeria-grid">
+            <div class="galeria-item sr" style="transition-delay:0ms">
+                <div class="galeria-placeholder"><span>🍽️</span></div>
+                <div class="galeria-item-title">Cevichería al mediodía</div>
+            </div>
+            <div class="galeria-item sr" style="transition-delay:80ms">
+                <div class="galeria-placeholder"><span>🌊</span></div>
+                <div class="galeria-item-title">Tradición familiar</div>
+            </div>
+            <div class="galeria-item sr" style="transition-delay:160ms">
+                <div class="galeria-placeholder"><span>🥘</span></div>
+                <div class="galeria-item-title">Ingredientes frescos</div>
+            </div>
+            <div class="galeria-item sr" style="transition-delay:240ms">
+                <div class="galeria-placeholder"><span>🌿</span></div>
+                <div class="galeria-item-title">El sabor del norte</div>
+            </div>
+            <div class="galeria-item sr" style="transition-delay:320ms">
+                <div class="galeria-placeholder"><span>🐟</span></div>
+                <div class="galeria-item-title">Mariscos del día</div>
+            </div>
+            <div class="galeria-item sr" style="transition-delay:400ms">
+                <div class="galeria-placeholder"><span>🏡</span></div>
+                <div class="galeria-item-title">Ambiente acogedor</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CONTACTO
+══════════════════════════════════════ -->
+<section id="contacto" aria-labelledby="contacto-title">
+    <div class="contacto-container">
+        <div class="contacto-header sr">
+            <p class="section-label" style="justify-content:center">Encuéntranos</p>
+            <h2 class="section-title-center" id="contacto-title">
+                Visítanos en <em>Trujillo</em>
+            </h2>
+            <p class="section-desc">Estamos listos para recibirte. Reserva tu mesa o haz tu pedido directo.</p>
+        </div>
+        <div class="contacto-grid">
+            <div class="contacto-info sr sr-left">
+                <h3>Información del restaurante</h3>
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div class="info-text">
+                        <strong>Dirección</strong>
+                        <span>Trujillo, La Libertad, Perú</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-phone"></i></div>
+                    <div class="info-text">
+                        <strong>Teléfono / Yape / Plin</strong>
+                        <span><a href="tel:+51936594222">+51 936 594 222</a></span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div class="info-text">
+                        <strong>WhatsApp</strong>
+                        <span><a href="https://wa.me/51936594222" target="_blank" rel="noopener">936 594 222</a> — Pedidos y reservas</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"><i class="fas fa-clock"></i></div>
+                    <div class="info-text">
+                        <strong>Horario</strong>
+                        <span>Lunes a Domingo: 12:00 pm – 10:00 pm</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"><i class="fab fa-facebook-f"></i></div>
+                    <div class="info-text">
+                        <strong>Facebook</strong>
+                        <span><a href="https://facebook.com/donjavierpiura" target="_blank" rel="noopener">REST. Dond Javier</a></span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon"><i class="fab fa-tiktok"></i></div>
+                    <div class="info-text">
+                        <strong>TikTok</strong>
+                        <span><a href="https://tiktok.com/@donjavierpiura" target="_blank" rel="noopener">Restaurant. Don'd Javier</a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="sr sr-right">
+                <div class="map-wrap">
+                    <!-- Mapa de Google (reemplazar con iframe real) -->
+                    <div class="map-placeholder" role="img" aria-label="Mapa de ubicación Dond' Javier">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>Dond' Javier</p>
+                        <small>Trujillo, La Libertad, Perú</small>
+                        <a href="https://maps.google.com/?q=Trujillo,LaLibertad,Peru" target="_blank" rel="noopener" class="map-open-link">
+                            <i class="fas fa-external-link-alt"></i> Abrir en Google Maps
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Frase del chef -->
+                <div style="margin-top:24px;padding:20px 24px;background:rgba(204,26,26,.08);border:1px solid rgba(232,93,4,.2);border-radius:var(--radius-md)">
+                    <p style="font-family:var(--font-display);font-style:italic;font-size:1rem;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:10px">
+                        "La cocina es un arte que se disfruta en cada bocado."
+                    </p>
+                    <span style="font-family:var(--font-label);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--naranja-claro)">
+                        — Chef Javier
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER (fondo personalizado)
+══════════════════════════════════════ -->
+<footer class="bg-fondo section-custom-bg" role="contentinfo"
+    style="--section-bg:url('assets/diseno-fondo2.jpg')">
+    <div class="footer-grid">
+
+        <div class="sr">
+            <img src="assets/logo-dond-javier.png" alt="Logo Dond' Javier"
+                 style="height:80px;margin-bottom:16px;filter:drop-shadow(0 2px 8px rgba(232,93,4,.4))"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <span class="footer-brand-fallback" style="display:none">Dond' Javier</span>
+            <p class="footer-tagline">
+                Restaurante de cocina norteña peruana. Más de 20 años llevando los
+                sabores auténticos del norte peruano a tu mesa.
+            </p>
+            <nav class="footer-socials" aria-label="Redes sociales">
+                <a href="https://facebook.com/donjavierpiura" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com/donjavierpiura" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://tiktok.com/@donjavierpiura" target="_blank" rel="noopener" class="social-btn" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://wa.me/51936594222" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </nav>
+        </div>
+
+        <div class="footer-col sr" style="transition-delay:.1s">
+            <h4>Navegación</h4>
+            <ul class="footer-links">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#carta-completa">Carta</a></li>
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col sr" style="transition-delay:.2s">
+            <h4>Contacto</h4>
+            <ul class="footer-links">
+                <li><a href="tel:+51936594222">+51 936 594 222</a></li>
+                <li><a href="https://wa.me/51936594222" target="_blank" rel="noopener">WhatsApp / Yape / Plin</a></li>
+                <li><a href="https://maps.google.com/?q=Trujillo,LaLibertad,Peru" target="_blank" rel="noopener">Trujillo, La Libertad, Perú</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-col sr" style="transition-delay:.3s">
+            <h4>Legal</h4>
+            <ul class="footer-links">
+                <li><a href="#">Términos y condiciones</a></li>
+                <li><a href="#">Política de privacidad</a></li>
+            </ul>
+            <a href="#" class="reclamos-link" aria-label="Libro de Reclamaciones">
+                <i class="fas fa-book" aria-hidden="true"></i>
+                Libro de Reclamaciones
+            </a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p class="footer-copy">
+            &copy; <span id="footer-year"></span> Dond' Javier — Trujillo, Perú.
+        </p>
+        <p class="footer-legal">Todos los derechos reservados</p>
+    </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════
+     BOTÓN FLOTANTE WHATSAPP
+══════════════════════════════════════ -->
+<a id="wa-float"
+   href="https://wa.me/51936594222?text=Hola+Dond+Javier!+Quisiera+hacer+un+pedido"
+   target="_blank" rel="noopener"
+   aria-label="Contactar por WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+<script src="script.js"></script>
+
+</body>
+</html>
