@@ -1,6 +1,6 @@
 /* ============================================================
    DOND' JAVIER — script.js
-   Versión: 3.4.0 (Fase 3: mapeo de imágenes para todas las tablas, corrección z-index)
+   Versión: 3.5.0 (Fase 3: eliminada categoría "Lo más destacado")
    ============================================================ */
 
 const WA_NUMBER = '51936594222';
@@ -18,7 +18,6 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         loader.classList.add('hidden');
         initScrollReveal();
-        generarDestacados();
         initTableClickEvents();
         initCart();
     }, 1800);
@@ -108,130 +107,7 @@ function pedirPorWhatsApp(nombre, precio) {
     window.open(WA_BASE + encodeURIComponent(msg), '_blank', 'noopener');
 }
 
-/* ── 8. GENERAR GRID DE DESTACADOS ── */
-const platosDestacados = [
-    { id: 1, nombre: 'Ceviche de Filete', categoria: 'Entradas', precio: 25, descripcion: 'Filete fresco marinado en limón sutil, ají limo, cebolla roja y choclo. El clásico de la casa.', imagen: 'assets/platos/Ceviche Filete.jpg', badge: 'Estrella' },
-    { id: 2, nombre: 'Ceviche Mixto c/ Conchas', categoria: 'Entradas', precio: 28, descripcion: 'Mixtura de mariscos frescos con conchas negras marinados en nuestra salsa secreta de ají limo.', imagen: 'assets/platos/Ceviche Mixto.jpg', badge: 'Popular' },
-    { id: 3, nombre: 'Parihuela con Cabrilla', categoria: 'Fondos', precio: 50, descripcion: 'Caldo marino concentrado con cabrilla fresca, mariscos, ají panka y hierbas aromáticas. Un abrazo del mar.', imagen: 'assets/platos/Parihuela Cabrilla.jpg', badge: 'Recomendado' },
-    { id: 4, nombre: 'Ronda Criolla', categoria: 'Fondos', precio: 60, descripcion: 'Majadito de yuca c/ costillas, seco de Chabelo, cecina, chorizo y rellenas. Para compartir.', imagen: 'assets/platos/ronda marina.jpg', badge: 'Para Compartir' },
-    { id: 5, nombre: 'Chicharrón Mixto', categoria: 'Crocantes', precio: 25, descripcion: 'El mejor chicharrón mixto de la ciudad: pollo y pescado crujientes con yuca frita y salsa criolla.', imagen: 'assets/platos/Chicharron Mixto.jpg', badge: 'Crujiente' },
-    { id: 6, nombre: 'Chaufa de Mariscos', categoria: 'Fondos', precio: 25, descripcion: 'Arroz chaufa wok con mix de mariscos frescos del Pacífico al estilo chifa. Fusión perfecta.', imagen: 'assets/platos/Chaufa Mariscos.jpg', badge: 'Nuevo' },
-    { id: 7, nombre: 'Limonada Frozen 1 Lt', categoria: 'Bebidas', precio: 10, descripcion: 'Limonada frozen de limón sutil de la región, helada y refrescante. La compañera perfecta.', imagen: 'assets/platos/Limonada Frozen.png', badge: 'Artesanal' },
-    { id: 8, nombre: 'Jalea Mixta', categoria: 'Crocantes', precio: 45, descripcion: 'Jalea mixta de mariscos y pescado frita en su punto perfecto, con yuca y ensalada criolla.', imagen: 'assets/platos/Jalea Mixta.jpg', badge: 'Especial' }
-];
-
-function generarDestacados() {
-    const grid = document.getElementById('destacadosGrid');
-    if (!grid) return;
-    grid.innerHTML = '';
-
-    platosDestacados.forEach((plato, index) => {
-        const card = document.createElement('article');
-        card.className = 'card-plato sr';
-        card.setAttribute('role', 'listitem');
-        card.dataset.id = plato.id;
-        card.dataset.nombre = plato.nombre;
-        card.dataset.precio = plato.precio;
-        card.dataset.desc = plato.descripcion;
-        card.dataset.categoria = plato.categoria;
-        card.dataset.imagen = plato.imagen;
-        card.style.transitionDelay = (index * 60) + 'ms';
-        card.tabIndex = 0;
-
-        const imgArea = document.createElement('div');
-        imgArea.className = 'card-img-area';
-        imgArea.setAttribute('aria-hidden', 'true');
-
-        const badge = document.createElement('span');
-        badge.className = 'card-badge';
-        badge.textContent = plato.badge;
-
-        const img = document.createElement('img');
-        img.src = plato.imagen;
-        img.alt = plato.nombre;
-        img.className = 'card-plato-img';
-        img.onerror = function() {
-            this.onerror = null;
-            this.src = 'assets/platos/placeholder-plato.jpg';
-        };
-        imgArea.appendChild(badge);
-        imgArea.appendChild(img);
-
-        const body = document.createElement('div');
-        body.className = 'card-body';
-
-        const cat = document.createElement('p');
-        cat.className = 'card-categoria';
-        cat.textContent = plato.categoria;
-
-        const nombre = document.createElement('h3');
-        nombre.className = 'card-nombre';
-        nombre.textContent = plato.nombre;
-
-        const desc = document.createElement('p');
-        desc.className = 'card-desc';
-        desc.textContent = plato.descripcion;
-
-        const footer = document.createElement('div');
-        footer.className = 'card-footer';
-
-        const precio = document.createElement('div');
-        precio.className = 'card-precio';
-        precio.innerHTML = `<sup>S/</sup>${plato.precio}`;
-
-        const pedirBtn = document.createElement('button');
-        pedirBtn.className = 'btn-pedir';
-        pedirBtn.dataset.nombre = plato.nombre;
-        pedirBtn.dataset.precio = plato.precio;
-        pedirBtn.dataset.desc = plato.descripcion;
-        pedirBtn.dataset.imagen = plato.imagen;
-        pedirBtn.setAttribute('aria-label', `Agregar ${plato.nombre} al pedido`);
-        pedirBtn.innerHTML = `<i class="fas fa-plus"></i> Agregar`;
-        pedirBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            abrirSelectorProducto({
-                nombre: plato.nombre,
-                descripcion: plato.descripcion,
-                opciones: [{ label: 'Porción', precio: plato.precio }],
-                imagen: plato.imagen
-            });
-        });
-
-        footer.appendChild(precio);
-        footer.appendChild(pedirBtn);
-        body.appendChild(cat);
-        body.appendChild(nombre);
-        body.appendChild(desc);
-        body.appendChild(footer);
-        card.appendChild(imgArea);
-        card.appendChild(body);
-
-        card.addEventListener('click', (e) => {
-            if (e.target.closest('.btn-pedir')) return;
-            abrirSelectorProducto({
-                nombre: plato.nombre,
-                descripcion: plato.descripcion,
-                opciones: [{ label: 'Porción', precio: plato.precio }],
-                imagen: plato.imagen
-            });
-        });
-        card.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                abrirSelectorProducto({
-                    nombre: plato.nombre,
-                    descripcion: plato.descripcion,
-                    opciones: [{ label: 'Porción', precio: plato.precio }],
-                    imagen: plato.imagen
-                });
-            }
-        });
-        grid.appendChild(card);
-    });
-    initScrollReveal();
-}
-
-/* ── 9. TABS CARTA COMPLETA ── */
+/* ── 8. TABS CARTA COMPLETA ── */
 (function initCartaTabs() {
     const tabBtns  = document.querySelectorAll('.carta-tab-btn');
     const panels   = document.querySelectorAll('.carta-panel');
@@ -257,7 +133,7 @@ function generarDestacados() {
     });
 })();
 
-/* ── 10. SELECCIONAR PRODUCTO (modal con imagen) ── */
+/* ── 9. SELECCIONAR PRODUCTO (modal con imagen) ── */
 const detailOverlay = document.getElementById('cardDetailOverlay');
 const detailTitle   = document.getElementById('detailTitle');
 const detailDesc    = document.getElementById('detailDesc');
@@ -343,7 +219,7 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') cerrarSelector();
 });
 
-/* ── 11. SISTEMA DE PEDIDO (carrito) ── */
+/* ── 10. SISTEMA DE PEDIDO (carrito) ── */
 let pedido = [];
 
 function agregarAlPedido(nombre, variante, precio, cantidad) {
@@ -415,7 +291,7 @@ function actualizarCarrito() {
     localStorage.setItem('dondjavier_pedido', JSON.stringify(pedido));
 }
 
-/* ── 12. ENVIAR PEDIDO POR WHATSAPP ── */
+/* ── 11. ENVIAR PEDIDO POR WHATSAPP ── */
 document.getElementById('cartSendWhatsApp').addEventListener('click', () => {
     if (pedido.length === 0) return;
 
@@ -442,7 +318,6 @@ document.getElementById('cartSendWhatsApp').addEventListener('click', () => {
 
 /* ══════════════════════════════════════════════════════════
      MAPEO DE IMÁGENES PARA TODOS LOS PRODUCTOS DE TABLAS
-     (Fase 3: permitir insertar imagen en cada producto)
 ══════════════════════════════════════════════════════════ */
 const productImageMap = {
     // ── Para Picar ──
@@ -519,7 +394,7 @@ const productImageMap = {
     'Cerveza': 'assets/platos/cerveza.jpg'
 };
 
-/* ── 13. CLIC EN FILAS DE TABLA (AHORA CON IMAGEN ESPECÍFICA) ── */
+/* ── 12. CLIC EN FILAS DE TABLA (CON IMAGEN ESPECÍFICA) ── */
 function initTableClickEvents() {
     document.querySelectorAll('.carta-table tbody tr').forEach(row => {
         if (row.dataset.listenerAdded) return;
@@ -569,7 +444,6 @@ function initTableClickEvents() {
                 descripcion = celdas[descIndex].textContent.trim();
             }
 
-            // Obtener la imagen específica del producto
             let imagen = productImageMap[nombre] || 'assets/platos/placeholder-plato.jpg';
 
             abrirSelectorProducto({
@@ -582,7 +456,7 @@ function initTableClickEvents() {
     });
 }
 
-/* ── 14. CONTADORES ANIMADOS ── */
+/* ── 13. CONTADORES ANIMADOS ── */
 (function initCounters() {
     const obs = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -601,7 +475,7 @@ function initTableClickEvents() {
     document.querySelectorAll('.counter').forEach(c => obs.observe(c));
 })();
 
-/* ── 15. PARALLAX HERO ── */
+/* ── 14. PARALLAX HERO ── */
 (function initParallax() {
     const video = document.querySelector('.hero-video-wrap video');
     if (!video) return;
@@ -611,7 +485,7 @@ function initTableClickEvents() {
     }, { passive: true });
 })();
 
-/* ── 16. HOVER CARDS ── */
+/* ── 15. HOVER CARDS ── */
 document.addEventListener('mouseover', (e) => {
     const card = e.target.closest('.card-plato');
     if (card) {
@@ -630,7 +504,7 @@ document.addEventListener('mouseout', (e) => {
     }
 });
 
-/* ── 17. ACTIVE LINKS STICKY ── */
+/* ── 16. ACTIVE LINKS STICKY ── */
 (function initActiveLinks() {
     const sections = document.querySelectorAll('section[id], header[id]');
     const navLinks = document.querySelectorAll('.navbar-sticky nav a');
@@ -648,7 +522,7 @@ document.addEventListener('mouseout', (e) => {
     });
 })();
 
-/* ── 18. INICIALIZAR CARRITO (sidebar oculto, toggle) ── */
+/* ── 17. INICIALIZAR CARRITO (sidebar oculto, toggle) ── */
 function initCart() {
     const saved = localStorage.getItem('dondjavier_pedido');
     if (saved) {
