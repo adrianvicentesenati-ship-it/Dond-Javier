@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dond' Javier — Restaurante de cocina norteña peruana. La cocina es un arte que se disfruta en cada bocado. Pedidos y reservas al +51 936 594 222.">
+    <meta name="description" content="Dond' Javier — Restaurante de cocina norteña peruana. La cocina es un arte que se disfruta en cada bocado. Pedidos y reservas al +51 936 594 222. Ubicado en Piura, Perú.">
     <meta name="theme-color" content="#cc1a1a">
     <title>Dond' Javier | Restaurante Norteño</title>
 
@@ -45,7 +45,7 @@
     </a>
     <nav>
         <a href="#hero">Inicio</a>
-        <a href="#nosotros">Nosotros</a>
+        <a href="#notros">Nosotros</a>
         <a href="#carta-completa">Carta</a>
         <a href="#galeria">Galería</a>
         <a href="#contacto">Contacto</a>
@@ -119,8 +119,8 @@
     </div>
 
     <div class="hero-badges" aria-hidden="true">
-        <div class="hero-badge"><i class="fas fa-clock"></i><span>Lun – Dom · 12:00–22:00</span></div>
-        <div class="hero-badge"><i class="fas fa-map-marker-alt"></i><span>Trujillo, La Libertad, Perú</span></div>
+        <div class="hero-badge"><i class="fas fa-clock"></i><span>Lun – Dom · 12:00–20:00</span></div>
+        <div class="hero-badge"><i class="fas fa-map-marker-alt"></i><span>Piura, Piura, Perú</span></div>
         <div class="hero-badge"><i class="fas fa-star"></i><span>Sabor norteño auténtico</span></div>
     </div>
 
@@ -132,7 +132,7 @@
 
 
 <!-- ══════════════════════════════════════
-     SECCIÓN NOSOTROS (fondo personalizado) — FASE 3 CORREGIDA
+     SECCIÓN NOSOTROS (fondo personalizado)
 ══════════════════════════════════════ -->
 <section id="nosotros" class="bg-fondo section-custom-bg" aria-labelledby="nosotros-title"
     style="--section-bg:url('assets/diseno-fondo.jpg')">
@@ -170,17 +170,13 @@
             </div>
         </div>
 
-        <!-- Contenedor de la imagen (Fase 3) -->
+        <!-- Contenedor de la imagen -->
         <div class="nosotros-visual sr sr-right">
             <div class="nosotros-img-wrap">
-                <img src="assets/restaurante-foto.png" 
-                     alt="Interior del restaurante Dond' Javier" 
+                <img src="nosotros-clean.jpg"
+                     alt="Interior del restaurante Dond' Javier"
                      id="nosotrosImg"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="nosotros-img-placeholder" style="display:none;">
-                    <i class="fas fa-utensils" style="font-size: 3rem; color: var(--naranja-claro); margin-bottom: 10px;"></i>
-                    <span>Imagen del restaurante</span>
-                </div>
+                     class="nosotros-img">
             </div>
             <div class="nosotros-badge-float">
                 <strong>+20</strong>
@@ -209,10 +205,9 @@
             </p>
         </div>
 
-        <!-- TABS de categoría -->
+        <!-- TABS de categoría (sin "Lo más destacado") -->
         <div class="carta-tabs" role="tablist">
-            <button class="carta-tab-btn active" data-tab="todos"     role="tab">Lo más destacado</button>
-            <button class="carta-tab-btn"         data-tab="picar"   role="tab">Para Picar</button>
+            <button class="carta-tab-btn active" data-tab="picar"   role="tab">Para Picar</button>
             <button class="carta-tab-btn"         data-tab="rondas"   role="tab">Rondas</button>
             <button class="carta-tab-btn"         data-tab="duos"     role="tab">Duos y Trios</button>
             <button class="carta-tab-btn"         data-tab="crocantes"role="tab">Crocantes</button>
@@ -223,16 +218,8 @@
             <button class="carta-tab-btn"         data-tab="bebidas"  role="tab">Bebidas</button>
         </div>
 
-        <!-- PANEL: Lo más destacado (grid de cards) -->
-        <div class="carta-panel active" id="panel-todos">
-            <h3 class="carta-section-title">Lo más destacado</h3>
-            <div class="menu-grid" id="destacadosGrid">
-                <!-- Las cards se generan dinámicamente con JS -->
-            </div>
-        </div>
-
-        <!-- PANEL: Para Picar -->
-        <div class="carta-panel" id="panel-picar">
+        <!-- PANEL: Para Picar (activo por defecto) -->
+        <div class="carta-panel active" id="panel-picar">
             <h3 class="carta-section-title">Para Picar</h3>
             <div class="carta-table-wrap">
                 <table class="carta-table" data-tipo="picar">
@@ -467,26 +454,26 @@
 
 
 <!-- ══════════════════════════════════════
-     MÉTODOS DE PAGO
+     MÉTODOS DE PAGO (con imágenes)
 ══════════════════════════════════════ -->
 <section id="pagos" aria-label="Métodos de pago">
     <div class="pagos-container">
         <span class="pagos-label">Métodos de pago</span>
         <div class="pago-item">
-            <i class="fas fa-mobile-alt"></i>
+            <img src="assets/icons/logo_yape.png" alt="Yape / Plin" class="pago-icon-img">
             <div>
                 <span>YAPE / PLIN</span>
                 <strong>936 594 222</strong>
             </div>
         </div>
         <div class="pago-item">
-            <i class="fas fa-university"></i>
+            <img src="assets/icons/logo_transferencia_bancaria.png" alt="Transferencia Bancaria" class="pago-icon-img">
             <div>
                 <span>Transferencia Bancaria</span>
             </div>
         </div>
         <div class="pago-item">
-            <i class="fas fa-credit-card"></i>
+            <img src="assets/icons/logo_tarjetas_credito.jpg" alt="Tarjetas de Crédito y Débito" class="pago-icon-img">
             <div>
                 <span>Tarjetas de Crédito</span>
                 <strong>y Débito</strong>
@@ -569,7 +556,7 @@
                     <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <div class="info-text">
                         <strong>Dirección</strong>
-                        <span>Piura, Piura, Perú</span>
+                        <span>J3, Piura 20008, Urbanización Miguel Grau</span>
                     </div>
                 </div>
                 <div class="info-item">
@@ -590,7 +577,7 @@
                     <div class="info-icon"><i class="fas fa-clock"></i></div>
                     <div class="info-text">
                         <strong>Horario</strong>
-                        <span>Lunes a Domingo: 12:00 pm – 10:00 pm</span>
+                        <span>Lunes a Domingo: 12:00 pm – 8:00 pm</span>
                     </div>
                 </div>
                 <div class="info-item">
@@ -611,17 +598,17 @@
             <div class="sr sr-right">
                 <div class="map-wrap">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63562.48!2d-79.0294!3d-8.1116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91ad3d4f76b2af37%3A0x10e83c4e09e26fac!2sTrujillo%2C%20La%20Libertad%2C%20Per%C3%BA!5e0!3m2!1ses!2spe!4v1718000000000!5m2!1ses!2spe"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4725.382917377434!2d-80.68990548773972!3d-5.1746282969133555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904a1b8e923e51df%3A0x453ad0dc4d1f0ab0!2sRestaurant%20DonD%20Javier!5e0!3m2!1ses!2spe!4v1783725731873!5m2!1ses!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"
                         width="100%"
                         height="340"
                         style="border:0; display:block;"
                         allowfullscreen=""
                         loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade"
-                        title="Ubicación Dond' Javier - Trujillo, La Libertad, Perú"
-                        aria-label="Mapa de Google mostrando Trujillo, La Libertad, Perú">
+                        title="Ubicación Dond' Javier - Piura, Piura, Perú"
+                        aria-label="Mapa de Google mostrando Piura, Piura, Perú">
                     </iframe>
-                    <a href="https://maps.google.com/?q=Trujillo,La+Libertad,Peru" target="_blank" rel="noopener" class="map-open-link map-open-link-bottom">
+                    <a href="https://maps.google.com/?q=Piura,Piura,Peru" target="_blank" rel="noopener" class="map-open-link map-open-link-bottom">
                         <i class="fas fa-external-link-alt"></i> Abrir en Google Maps
                     </a>
                 </div>
@@ -681,7 +668,7 @@
             <ul class="footer-links">
                 <li><a href="tel:+51936594222">+51 936 594 222</a></li>
                 <li><a href="https://wa.me/51936594222" target="_blank" rel="noopener">WhatsApp / Yape / Plin</a></li>
-                <li><a href="https://maps.google.com/?q=Trujillo,LaLibertad,Peru" target="_blank" rel="noopener">Trujillo, La Libertad, Perú</a></li>
+                <li><a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4725.382917377434!2d-80.68990548773972!3d-5.1746282969133555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904a1b8e923e51df%3A0x453ad0dc4d1f0ab0!2sRestaurant%20DonD%20Javier!5e0!3m2!1ses!2spe!4v1783725705342!5m2!1ses!2spe" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"> target="_blank" rel="noopener">Piura, Piura, Perú</a></li>
             </ul>
         </div>
 
