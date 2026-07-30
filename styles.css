@@ -1,6 +1,6 @@
 /* ══════════════════════════════════════════════════════════
    DOND' JAVIER — styles.css
-   Versión: 2.5.0 (Fase 3: imagen en Nosotros, z-index sidebar corregido)
+   Versión: 2.6.0 (Fase 3: iconos de pago con imágenes)
 ══════════════════════════════════════════════════════════ */
 
 /* ── Reset ── */
@@ -552,7 +552,7 @@ body:hover #cursor-dot, body:hover #cursor-ring { opacity: 1; }
 }
 
 /* ══════════════════════════════════════════════════════════
-   SECCIÓN NOSOTROS — FASE 3 CORREGIDA
+   SECCIÓN NOSOTROS
 ══════════════════════════════════════════════════════════ */
 #nosotros {
     padding: var(--section-py) clamp(20px, 6vw, 80px);
@@ -599,16 +599,12 @@ body:hover #cursor-dot, body:hover #cursor-ring { opacity: 1; }
     position: relative;
 }
 .nosotros-img-wrap {
-    border-radius: var(--radius-lg);
-    overflow: hidden;
     aspect-ratio: 4/5;
     min-height: 280px;
-    background: var(--grad-card);
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    box-shadow: var(--sombra-hover);
 }
 .nosotros-img-wrap img {
     width: 100%;
@@ -634,15 +630,6 @@ body:hover #cursor-dot, body:hover #cursor-ring { opacity: 1; }
     font-size: 3rem;
     color: var(--naranja-claro);
     margin-bottom: 10px;
-}
-.nosotros-img-wrap::after {
-    content: '';
-    position: absolute; inset: 0;
-    border-radius: var(--radius-lg);
-    border: 2px solid transparent;
-    background: linear-gradient(var(--negro-2), var(--negro-2)) padding-box,
-                var(--grad-fuego) border-box;
-    pointer-events: none;
 }
 .nosotros-badge-float {
     position: absolute; bottom: -20px; left: -20px;
@@ -672,7 +659,7 @@ body:hover #cursor-dot, body:hover #cursor-ring { opacity: 1; }
 }
 
 /* ══════════════════════════════════════════════════════════
-   SECCIÓN CARTA COMPLETA (incluye grid de destacados y tablas)
+   SECCIÓN CARTA COMPLETA (incluye tablas)
 ══════════════════════════════════════════════════════════ */
 #carta-completa {
     padding: var(--section-py) clamp(20px, 5vw, 60px);
@@ -785,136 +772,6 @@ body:hover #cursor-dot, body:hover #cursor-ring { opacity: 1; }
     font-size: 1rem; font-weight: 700;
     color: var(--naranja-claro);
 }
-
-/* ── Grid de destacados ── */
-#destacadosGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 28px;
-    margin-top: 20px;
-}
-
-.card-plato {
-    background: var(--grad-card);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    box-shadow: var(--sombra-card);
-    transition: var(--transition);
-    cursor: pointer;
-    position: relative;
-    border: 1px solid rgba(232,93,4,.1);
-}
-.card-plato::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,.04) 0%, transparent 50%);
-    border-radius: var(--radius-lg);
-    pointer-events: none;
-}
-.card-plato:hover {
-    transform: translateY(-10px) scale(1.01);
-    box-shadow: var(--sombra-hover);
-    border-color: rgba(232,93,4,.35);
-}
-.card-plato .card-img-area {
-    height: 180px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 5rem;
-    position: relative;
-    transition: var(--transition);
-    background: linear-gradient(135deg, var(--negro-3) 0%, #3a1515 100%) !important;
-}
-.card-plato:hover .card-img-area { transform: scale(1.04); }
-.card-plato::after {
-    content: '';
-    position: absolute; top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--grad-fuego);
-    opacity: 0;
-    transition: opacity .3s;
-}
-.card-plato:hover::after { opacity: 1; }
-
-.card-badge {
-    position: absolute; top: 14px; left: 14px;
-    background: var(--grad-rojo-3d);
-    color: var(--blanco);
-    font-family: var(--font-label);
-    font-size: .62rem; font-weight: 600;
-    letter-spacing: .1em; text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(204,26,26,.4);
-}
-.card-body { padding: 20px 22px 22px; }
-.card-categoria {
-    font-family: var(--font-label);
-    font-size: .62rem; font-weight: 600;
-    letter-spacing: .16em; text-transform: uppercase;
-    color: var(--naranja-claro);
-    margin-bottom: 6px;
-}
-.card-nombre {
-    font-family: var(--font-display);
-    font-size: 1.25rem; font-weight: 700;
-    color: var(--blanco);
-    margin-bottom: 8px; line-height: 1.2;
-}
-.card-desc {
-    font-size: .85rem; line-height: 1.6;
-    color: rgba(255,255,255,.5);
-    margin-bottom: 18px;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-.card-footer {
-    display: flex; align-items: center; justify-content: space-between;
-}
-.card-precio {
-    font-family: var(--font-display);
-    font-size: 1.5rem; font-weight: 900;
-    background: var(--grad-fuego);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-.card-precio sup {
-    font-size: .8rem; font-weight: 600;
-    color: rgba(255,255,255,.5);
-    font-family: var(--font-body);
-    -webkit-text-fill-color: rgba(255,255,255,.5);
-}
-
-.btn-pedir {
-    display: inline-flex; align-items: center; gap: 7px;
-    font-family: var(--font-label);
-    font-size: .7rem; font-weight: 600;
-    letter-spacing: .1em; text-transform: uppercase;
-    background: #25D366;
-    color: var(--blanco);
-    padding: 9px 16px;
-    border-radius: 30px;
-    border: none; cursor: pointer;
-    transition: var(--transition);
-    position: relative; overflow: hidden;
-}
-.btn-pedir:hover {
-    background: #1ebe5a;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(37,211,102,.35);
-}
-
-.ripple {
-    position: absolute;
-    border-radius: 50%;
-    background: rgba(255,255,255,.3);
-    transform: scale(0);
-    animation: rippleAnim .6s linear;
-    pointer-events: none;
-}
-@keyframes rippleAnim { to { transform: scale(4); opacity: 0; } }
 
 /* ══════════════════════════════════════════════════════════
    MODAL DE SELECCIÓN DE PRODUCTO (con imagen)
@@ -1050,7 +907,7 @@ body:hover #cursor-dot, body:hover #cursor-ring { opacity: 1; }
 #detail-close-x:hover { background: rgba(204,26,26,.3); color: var(--blanco); }
 
 /* ══════════════════════════════════════════════════════════
-   PANEL DE PEDIDO (SIDEBAR) — Z-INDEX CORREGIDO
+   PANEL DE PEDIDO (SIDEBAR)
 ══════════════════════════════════════════════════════════ */
 .cart-sidebar {
     position: fixed;
@@ -1248,7 +1105,6 @@ body:hover #cursor-dot, body:hover #cursor-ring { opacity: 1; }
     border: 1px solid rgba(232,93,4,.12);
     transition: var(--transition);
 }
-/* Imagen de galería: siempre cubre sin deformarse */
 .galeria-img {
     width: 100%;
     height: 100%;
@@ -1609,12 +1465,17 @@ footer::before {
     border-color: rgba(232,93,4,.4);
     background: rgba(232,93,4,.08);
 }
-.pago-item i {
-    font-size: 1.3rem;
-    background: var(--grad-fuego);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+/* ── Iconos de métodos de pago (imágenes) ── */
+.pago-icon-img {
+    height: 32px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    transition: transform 0.2s ease;
+}
+.pago-item:hover .pago-icon-img {
+    transform: scale(1.05);
 }
 .pago-item span {
     font-family: var(--font-label);
@@ -1655,7 +1516,6 @@ footer::before {
     .galeria-item { aspect-ratio: 16/9; height: auto; }
     .stats-row { gap: 20px; flex-wrap: wrap; justify-content: center; }
     .stat-item { min-width: 90px; }
-    #destacadosGrid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
     #cursor-dot, #cursor-ring { display: none; }
     body { cursor: auto; }
     .pagos-container { gap: 14px; flex-wrap: wrap; justify-content: center; }
@@ -1673,45 +1533,32 @@ footer::before {
     .cart-float-btn { bottom: 90px; right: 16px; width: 48px; height: 48px; font-size: 1.2rem; }
     #wa-float { bottom: 28px; right: 16px; width: 50px; height: 50px; font-size: 1.3rem; }
     .nosotros-img-wrap { min-height: 200px; aspect-ratio: 4/3; }
-    /* Mapa adaptado a móvil */
     .map-wrap iframe { height: 260px; }
-    /* Carta tabla scroll horizontal */
     .carta-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    /* Sección pagos wrap limpio */
     .pago-item { flex-direction: column; text-align: center; }
-    /* Detalle modal full en móvil */
     .card-detail-box { flex-direction: column; max-height: 95vh; overflow-y: auto; }
     .detail-image { max-height: 200px; }
-    /* Nosotros badge flotante reposicionado */
     .nosotros-badge-float { bottom: -16px; left: 12px; padding: 12px 16px; }
-    /* Sección nosotros texto centrado */
     .sr-left, .sr-right { text-align: center; }
     .section-label { justify-content: center !important; }
     .section-label::before { display: none; }
 }
 
 @media (max-width: 480px) {
-    #destacadosGrid { grid-template-columns: 1fr; }
     .carta-tabs { border-radius: 24px; padding: 4px; }
     .carta-tab-btn { padding: 6px 10px; font-size: 0.55rem; }
     .carta-table thead th, .carta-table tbody td { padding: 8px 10px; }
     .carta-table tbody td:not(:first-child) { font-size: 0.9rem; }
-    .card-plato { margin: 0 4px; }
     .info-item { gap: 12px; }
     .info-icon { width: 38px; height: 38px; font-size: 0.85rem; }
     .contacto-info h3 { font-size: 1.4rem; }
     .map-wrap iframe { height: 240px; }
     .hero-title span { display: inline-block; }
     .cart-sidebar { max-width: 100%; }
-    /* Galería en celulares pequeños */
     .galeria-item { aspect-ratio: 4/3; height: auto; }
     .galeria-item:nth-child(1) { height: 200px; }
-    /* Nosotros stats en columna */
     .stats-row { flex-direction: column; align-items: center; gap: 16px; }
-    /* Sección nosotros padding */
     #nosotros { padding-left: 16px; padding-right: 16px; }
-    /* Footer brand */
     .footer-tagline { font-size: 0.85rem; }
-    /* Botones hero */
     .hero-actions .btn-primary, .hero-actions .btn-outline { font-size: 0.8rem; padding: 12px 20px; }
 }
