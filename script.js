@@ -1,6 +1,6 @@
 /* ============================================================
    DOND' JAVIER — script.js
-   Versión: 3.5.0 (Fase 3: eliminada categoría "Lo más destacado")
+   Versión: 3.6.0 (Mobile Ultra Compact)
    ============================================================ */
 
 const WA_NUMBER = '51936594222';
@@ -15,12 +15,23 @@ const WA_BASE   = `https://wa.me/${WA_NUMBER}?text=`;
 /* ── 1. PAGE LOADER ── */
 window.addEventListener('load', () => {
     const loader = document.getElementById('page-loader');
-    setTimeout(() => {
-        loader.classList.add('hidden');
+    if (loader) {
+        setTimeout(() => {
+            loader.classList.add('hidden');
+            // Inicializamos después de que el loader desaparezca
+            initScrollReveal();
+            initTableClickEvents();
+            initCart();
+            // Re-inicializar contadores si están visibles
+            initCounters();
+        }, 1800);
+    } else {
+        // Fallback si no hay loader
         initScrollReveal();
         initTableClickEvents();
         initCart();
-    }, 1800);
+        initCounters();
+    }
 });
 
 /* ── 2. CURSOR PERSONALIZADO ── */
@@ -28,24 +39,40 @@ window.addEventListener('load', () => {
     const dot  = document.getElementById('cursor-dot');
     const ring = document.getElementById('cursor-ring');
     if (!dot || !ring) return;
+    // Solo en pantallas no táctiles
+    if (window.matchMedia('(pointer: coarse)').matches) {
+        dot.style.display = 'none';
+        ring.style.display = 'none';
+        return;
+    }
     let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
     document.addEventListener('mousemove', e => {
-        mouseX = e.clientX; mouseY = e.clientY;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
         dot.style.left = mouseX + 'px';
         dot.style.top  = mouseY + 'px';
     });
     function animRing() {
-        ringX += (mouseX - ringX) * .14;
-        ringY += (mouseY - ringY) * .14;
+        ringX += (mouseX - ringX) * 0.14;
+        ringY += (mouseY - ringY) * 0.14;
         ring.style.left = ringX + 'px';
         ring.style.top  = ringY + 'px';
         requestAnimationFrame(animRing);
     }
     animRing();
+
     const interactive = 'a, button, .card-plato, .filter-btn, .carta-tab-btn, .cart-item-remove, .variant-btn, .detail-quantity button, .btn-cart-send, .carta-table tbody tr';
     document.querySelectorAll(interactive).forEach(el => {
-        el.addEventListener('mouseenter', () => { ring.style.width = '60px'; ring.style.height = '60px'; ring.style.opacity = '.3'; });
-        el.addEventListener('mouseleave', () => { ring.style.width = '36px'; ring.style.height = '36px'; ring.style.opacity = '.5'; });
+        el.addEventListener('mouseenter', () => {
+            ring.style.width = '60px';
+            ring.style.height = '60px';
+            ring.style.opacity = '0.3';
+        });
+        el.addEventListener('mouseleave', () => {
+            ring.style.width = '36px';
+            ring.style.height = '36px';
+            ring.style.opacity = '0.5';
+        });
     });
 })();
 
@@ -53,55 +80,111 @@ window.addEventListener('load', () => {
 (function initStickyNav() {
     const sticky = document.getElementById('stickyNav');
     const hero   = document.getElementById('hero');
-    new IntersectionObserver(([e]) => sticky.classList.toggle('visible', !e.isIntersecting), { threshold: 0 }).observe(hero);
+    if (!sticky || !hero) return;
+    const observer = new IntersectionObserver(([entry]) => {
+        sticky.classList.toggle('visible', !entry.isIntersecting);
+    }, { threshold: 0 });
+    observer.observe(hero);
+
+    // Cerrar menú móvil al hacer clic en enlaces
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', e => {
-            const t = document.querySelector(link.getAttribute('href'));
-            if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); closeMobileNav(); }
+            const target = document.querySelector(link.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                closeMobileNav();
+            }
         });
     });
 })();
 
-/* ── 4. HAMBURGER ── */
+/* ── 4. HAMBURGER MENÚ ── */
 const hamburgerBtn = document.getElementById('hamburgerBtn');
 const mobileNav    = document.getElementById('mobileNav');
+
 function closeMobileNav() {
-    hamburgerBtn.classList.remove('open');
-    mobileNav.classList.remove('open');
-    hamburgerBtn.setAttribute('aria-expanded', 'false');
+    if (hamburgerBtn) hamburgerBtn.classList.remove('open');
+    if (mobileNav) mobileNav.classList.remove('open');
+    if (hamburgerBtn) hamburgerBtn.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
 }
-hamburgerBtn.addEventListener('click', () => {
-    const isOpen = mobileNav.classList.toggle('open');
-    hamburgerBtn.classList.toggle('open', isOpen);
-    hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-});
-mobileNav.addEventListener('click', e => { if (e.target === mobileNav) closeMobileNav(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeMobileNav(); cerrarSelector(); } });
+
+if (hamburgerBtn && mobileNav) {
+    hamburgerBtn.addEventListener('click', () => {
+        const isOpen = mobileNav.classList.toggle('open');
+        hamburgerBtn.classList.toggle('open', isOpen);
+        hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    mobileNav.addEventListener('click', (e) => {
+        if (e.target === mobileNav) closeMobileNav();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeMobileNav();
+            cerrarSelector();
+        }
+    });
+}
 
 /* ── 5. SCROLL REVEAL ── */
 function initScrollReveal() {
-    const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
     }, { rootMargin: '0px 0px -60px 0px', threshold: 0.12 });
-    document.querySelectorAll('.sr').forEach(el => obs.observe(el));
+
+    document.querySelectorAll('.sr').forEach(el => observer.observe(el));
 }
 
-/* ── 6. RIPPLE ── */
+/* ── 6. RIPPLE EFFECT ── */
 function addRipple(e) {
     const btn = e.currentTarget;
     const ripple = document.createElement('span');
     const rect   = btn.getBoundingClientRect();
     const size   = Math.max(rect.width, rect.height);
     ripple.classList.add('ripple');
-    ripple.style.cssText = `width:${size}px;height:${size}px;left:${e.clientX-rect.left-size/2}px;top:${e.clientY-rect.top-size/2}px;`;
+    ripple.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        left: ${e.clientX - rect.left - size/2}px;
+        top: ${e.clientY - rect.top - size/2}px;
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.3);
+        transform: scale(0);
+        animation: rippleAnim 0.6s ease-out forwards;
+        pointer-events: none;
+    `;
+    btn.style.position = 'relative';
+    btn.style.overflow = 'hidden';
     btn.appendChild(ripple);
     ripple.addEventListener('animationend', () => ripple.remove());
 }
-document.querySelectorAll('.btn-pedir, .btn-primary, .navbar-cta, .carta-tab-btn, .btn-cart-send, #detailAddToCart').forEach(b => b.addEventListener('click', addRipple));
 
-/* ── 7. WHATSAPP (directo) ── */
+// Inyectar keyframes si no existen
+if (!document.getElementById('ripple-style')) {
+    const style = document.createElement('style');
+    style.id = 'ripple-style';
+    style.textContent = `
+        @keyframes rippleAnim {
+            to { transform: scale(4); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+document.querySelectorAll('.btn-pedir, .btn-primary, .navbar-cta, .carta-tab-btn, .btn-cart-send, #detailAddToCart')
+    .forEach(btn => btn.addEventListener('click', addRipple));
+
+/* ── 7. WHATSAPP DIRECTO (función auxiliar) ── */
 function pedirPorWhatsApp(nombre, precio) {
     const msg = `¡Hola Dond' Javier! 👋\nMe gustaría pedir: *${nombre}* (S/ ${precio}).\n¿Está disponible?`;
     window.open(WA_BASE + encodeURIComponent(msg), '_blank', 'noopener');
@@ -120,11 +203,14 @@ function pedirPorWhatsApp(nombre, precio) {
             const panel = document.getElementById('panel-' + btn.dataset.tab);
             if (panel) {
                 panel.classList.add('active');
-                panel.style.opacity = '0'; panel.style.transform = 'translateY(12px)';
+                panel.style.opacity = '0';
+                panel.style.transform = 'translateY(12px)';
                 requestAnimationFrame(() => {
                     panel.style.transition = 'opacity .35s ease, transform .35s ease';
-                    panel.style.opacity = '1'; panel.style.transform = 'translateY(0)';
+                    panel.style.opacity = '1';
+                    panel.style.transform = 'translateY(0)';
                 });
+                // Reinicializar eventos de clic en filas si hay tabla
                 if (panel.querySelector('table')) {
                     initTableClickEvents();
                 }
@@ -133,7 +219,7 @@ function pedirPorWhatsApp(nombre, precio) {
     });
 })();
 
-/* ── 9. SELECCIONAR PRODUCTO (modal con imagen) ── */
+/* ── 9. MODAL DE SELECCIÓN DE PRODUCTO ── */
 const detailOverlay = document.getElementById('cardDetailOverlay');
 const detailTitle   = document.getElementById('detailTitle');
 const detailDesc    = document.getElementById('detailDesc');
@@ -151,6 +237,10 @@ let selectedVariant = 0;
 let currentQuantity = 1;
 
 function abrirSelectorProducto(productData) {
+    if (!productData || !productData.opciones || productData.opciones.length === 0) {
+        console.warn('Producto sin opciones');
+        return;
+    }
     currentProduct = productData;
     selectedVariant = 0;
     currentQuantity = 1;
@@ -193,36 +283,49 @@ function cerrarSelector() {
     document.body.style.overflow = '';
 }
 
-qtyMinus.addEventListener('click', () => {
-    let val = parseInt(qtyValue.textContent) || 1;
-    if (val > 1) qtyValue.textContent = val - 1;
-});
-qtyPlus.addEventListener('click', () => {
-    let val = parseInt(qtyValue.textContent) || 1;
-    qtyValue.textContent = val + 1;
-});
+if (qtyMinus && qtyPlus && qtyValue) {
+    qtyMinus.addEventListener('click', () => {
+        let val = parseInt(qtyValue.textContent) || 1;
+        if (val > 1) qtyValue.textContent = val - 1;
+    });
+    qtyPlus.addEventListener('click', () => {
+        let val = parseInt(qtyValue.textContent) || 1;
+        qtyValue.textContent = val + 1;
+    });
+}
 
-detailAddToCart.addEventListener('click', () => {
-    if (!currentProduct) return;
-    const opcion = currentProduct.opciones[selectedVariant];
-    const cantidad = parseInt(qtyValue.textContent) || 1;
-    agregarAlPedido(currentProduct.nombre, opcion.label, opcion.precio, cantidad);
-    cerrarSelector();
-});
+if (detailAddToCart) {
+    detailAddToCart.addEventListener('click', () => {
+        if (!currentProduct) return;
+        const opcion = currentProduct.opciones[selectedVariant];
+        const cantidad = parseInt(qtyValue.textContent) || 1;
+        // Validar que el precio sea numérico
+        const precio = typeof opcion.precio === 'number' ? opcion.precio : parseFloat(opcion.precio);
+        if (isNaN(precio)) {
+            alert('El precio de esta opción no está disponible. Por favor, consulta directamente.');
+            return;
+        }
+        agregarAlPedido(currentProduct.nombre, opcion.label, precio, cantidad);
+        cerrarSelector();
+    });
+}
 
-detailClose.addEventListener('click', cerrarSelector);
-detailCloseX.addEventListener('click', cerrarSelector);
-detailOverlay.addEventListener('click', (e) => {
-    if (e.target === detailOverlay) cerrarSelector();
-});
+if (detailClose) detailClose.addEventListener('click', cerrarSelector);
+if (detailCloseX) detailCloseX.addEventListener('click', cerrarSelector);
+if (detailOverlay) {
+    detailOverlay.addEventListener('click', (e) => {
+        if (e.target === detailOverlay) cerrarSelector();
+    });
+}
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') cerrarSelector();
 });
 
-/* ── 10. SISTEMA DE PEDIDO (carrito) ── */
+/* ── 10. SISTEMA DE PEDIDO (CARRITO) ── */
 let pedido = [];
 
 function agregarAlPedido(nombre, variante, precio, cantidad) {
+    if (!nombre || !variante || typeof precio !== 'number' || cantidad < 1) return;
     const existing = pedido.find(item => item.nombre === nombre && item.variante === variante);
     if (existing) {
         existing.cantidad += cantidad;
@@ -230,12 +333,16 @@ function agregarAlPedido(nombre, variante, precio, cantidad) {
         pedido.push({ nombre, variante, precio, cantidad });
     }
     actualizarCarrito();
-    document.getElementById('cartSidebar').classList.add('open');
+    // Abrir sidebar en móviles o desktop
+    const sidebar = document.getElementById('cartSidebar');
+    if (sidebar) sidebar.classList.add('open');
 }
 
 function eliminarDelPedido(index) {
-    pedido.splice(index, 1);
-    actualizarCarrito();
+    if (index >= 0 && index < pedido.length) {
+        pedido.splice(index, 1);
+        actualizarCarrito();
+    }
 }
 
 function actualizarCarrito() {
@@ -244,11 +351,14 @@ function actualizarCarrito() {
     const badge = document.getElementById('cartBadge');
     const sendBtn = document.getElementById('cartSendWhatsApp');
 
+    if (!container || !totalEl || !badge || !sendBtn) return;
+
     if (pedido.length === 0) {
         container.innerHTML = '<div class="cart-empty">Aún no has agregado productos.</div>';
         totalEl.textContent = 'S/ 0.00';
         badge.textContent = '0';
         sendBtn.disabled = true;
+        localStorage.removeItem('dondjavier_pedido');
         return;
     }
 
@@ -269,7 +379,7 @@ function actualizarCarrito() {
                     </button>
                 </div>
                 <div class="cart-item-details">
-                    <span class="cart-item-price">S/ ${item.precio} x ${item.cantidad}</span>
+                    <span class="cart-item-price">S/ ${item.precio.toFixed(2)} x ${item.cantidad}</span>
                     <span class="cart-item-subtotal">S/ ${subtotal.toFixed(2)}</span>
                 </div>
             </div>
@@ -281,18 +391,22 @@ function actualizarCarrito() {
     badge.textContent = pedido.reduce((sum, i) => sum + i.cantidad, 0);
     sendBtn.disabled = false;
 
-    document.querySelectorAll('.cart-item-remove').forEach(btn => {
+    // Eventos para eliminar
+    container.querySelectorAll('.cart-item-remove').forEach(btn => {
         btn.addEventListener('click', (e) => {
-            const idx = parseInt(btn.dataset.index);
-            eliminarDelPedido(idx);
+            const idx = parseInt(btn.dataset.index, 10);
+            if (!isNaN(idx)) eliminarDelPedido(idx);
         });
     });
 
-    localStorage.setItem('dondjavier_pedido', JSON.stringify(pedido));
+    // Guardar en localStorage
+    try {
+        localStorage.setItem('dondjavier_pedido', JSON.stringify(pedido));
+    } catch (e) { /* ignore */ }
 }
 
 /* ── 11. ENVIAR PEDIDO POR WHATSAPP ── */
-document.getElementById('cartSendWhatsApp').addEventListener('click', () => {
+document.getElementById('cartSendWhatsApp')?.addEventListener('click', () => {
     if (pedido.length === 0) return;
 
     let mensaje = 'Hola, quiero realizar el siguiente pedido:\n\n';
@@ -301,7 +415,7 @@ document.getElementById('cartSendWhatsApp').addEventListener('click', () => {
         mensaje += `${i+1}. ${item.nombre}\n`;
         mensaje += `   * Presentación: ${item.variante}\n`;
         mensaje += `   * Cantidad: ${item.cantidad}\n`;
-        mensaje += `   * Precio: S/ ${item.precio}\n`;
+        mensaje += `   * Precio unitario: S/ ${item.precio.toFixed(2)}\n`;
         mensaje += `   * Subtotal: S/ ${subtotal.toFixed(2)}\n\n`;
     });
     const total = pedido.reduce((sum, i) => sum + (i.precio * i.cantidad), 0);
@@ -311,14 +425,14 @@ document.getElementById('cartSendWhatsApp').addEventListener('click', () => {
     const url = WA_BASE + encodeURIComponent(mensaje);
     window.open(url, '_blank', 'noopener');
 
+    // Cerrar sidebar en móviles
     if (window.innerWidth <= 1024) {
-        document.getElementById('cartSidebar').classList.remove('open');
+        const sidebar = document.getElementById('cartSidebar');
+        if (sidebar) sidebar.classList.remove('open');
     }
 });
 
-/* ══════════════════════════════════════════════════════════
-     MAPEO DE IMÁGENES PARA TODOS LOS PRODUCTOS DE TABLAS
-══════════════════════════════════════════════════════════ */
+/* ── 12. MAPEO DE IMÁGENES PARA PRODUCTOS ── */
 const productImageMap = {
     // ── Para Picar ──
     'Ceviche de Filete': 'assets/platos/Ceviche Filete.jpg',
@@ -394,7 +508,7 @@ const productImageMap = {
     'Cerveza': 'assets/platos/cerveza.jpg'
 };
 
-/* ── 12. CLIC EN FILAS DE TABLA (CON IMAGEN ESPECÍFICA) ── */
+/* ── 13. CLIC EN FILAS DE TABLA (con imagen específica) ── */
 function initTableClickEvents() {
     document.querySelectorAll('.carta-table tbody tr').forEach(row => {
         if (row.dataset.listenerAdded) return;
@@ -456,74 +570,77 @@ function initTableClickEvents() {
     });
 }
 
-/* ── 13. CONTADORES ANIMADOS ── */
-(function initCounters() {
-    const obs = new IntersectionObserver((entries) => {
+/* ── 14. CONTADORES ANIMADOS ── */
+function initCounters() {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
-            const el = entry.target, target = +el.dataset.target;
-            const step = target / (1800 / 16);
+            const el = entry.target;
+            const target = +el.dataset.target;
+            if (!target || isNaN(target)) return;
+            const duration = 1800;
+            const step = target / (duration / 16);
             let current = 0;
             const tick = () => {
                 current = Math.min(current + step, target);
                 el.textContent = Math.floor(current).toLocaleString('es-PE');
-                if (current < target) requestAnimationFrame(tick);
+                if (current < target) {
+                    requestAnimationFrame(tick);
+                }
             };
-            tick(); obs.unobserve(el);
+            tick();
+            observer.unobserve(el);
         });
     }, { threshold: 0.5 });
-    document.querySelectorAll('.counter').forEach(c => obs.observe(c));
-})();
 
-/* ── 14. PARALLAX HERO ── */
+    document.querySelectorAll('.counter').forEach(c => observer.observe(c));
+}
+
+/* ── 15. PARALLAX HERO ── */
 (function initParallax() {
     const video = document.querySelector('.hero-video-wrap video');
     if (!video) return;
+    let ticking = false;
     window.addEventListener('scroll', () => {
-        if (window.scrollY < window.innerHeight)
-            video.style.transform = `translateY(${window.scrollY * 0.35}px)`;
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const scrollY = window.scrollY;
+                if (scrollY < window.innerHeight) {
+                    video.style.transform = `translateY(${scrollY * 0.35}px)`;
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
     }, { passive: true });
 })();
 
-/* ── 15. HOVER CARDS ── */
-document.addEventListener('mouseover', (e) => {
-    const card = e.target.closest('.card-plato');
-    if (card) {
-        const img = card.querySelector('.card-plato-img');
-        if (img) {
-            img.style.transform = 'scale(1.08)';
-            img.style.transition = 'transform .4s cubic-bezier(.34,1.56,.64,1)';
-        }
-    }
-});
-document.addEventListener('mouseout', (e) => {
-    const card = e.target.closest('.card-plato');
-    if (card) {
-        const img = card.querySelector('.card-plato-img');
-        if (img) img.style.transform = 'scale(1)';
-    }
-});
-
-/* ── 16. ACTIVE LINKS STICKY ── */
+/* ── 16. ACTIVE LINKS EN STICKY NAV ── */
 (function initActiveLinks() {
     const sections = document.querySelectorAll('section[id], header[id]');
     const navLinks = document.querySelectorAll('.navbar-sticky nav a');
-    sections.forEach(s => {
-        const obs2 = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    navLinks.forEach(link => {
-                        link.style.color = link.getAttribute('href') === '#' + entry.target.id ? 'var(--naranja-claro)' : '';
-                    });
-                }
-            });
-        }, { rootMargin: '-40% 0px -55% 0px' });
-        obs2.observe(s);
-    });
+    if (!navLinks.length) return;
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                navLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href === '#' + id) {
+                        link.style.color = 'var(--naranja-claro)';
+                    } else {
+                        link.style.color = '';
+                    }
+                });
+            }
+        });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => observer.observe(s));
 })();
 
-/* ── 17. INICIALIZAR CARRITO (sidebar oculto, toggle) ── */
+/* ── 17. INICIALIZAR CARRITO (sidebar, toggle y recuperación) ── */
 function initCart() {
+    // Recuperar carrito guardado
     const saved = localStorage.getItem('dondjavier_pedido');
     if (saved) {
         try {
@@ -532,22 +649,27 @@ function initCart() {
                 pedido = parsed;
                 actualizarCarrito();
             }
-        } catch (e) {}
+        } catch (e) { /* ignore */ }
     }
 
     const sidebar = document.getElementById('cartSidebar');
     const toggleBtn = document.getElementById('cartToggleFloat');
     const closeBtn = document.getElementById('cartCloseBtn');
 
+    if (!sidebar || !toggleBtn || !closeBtn) return;
+
+    // Inicialmente cerrado
     sidebar.classList.remove('open');
 
     toggleBtn.addEventListener('click', () => {
         sidebar.classList.toggle('open');
     });
+
     closeBtn.addEventListener('click', () => {
         sidebar.classList.remove('open');
     });
 
+    // Cerrar al hacer clic fuera en móviles
     document.addEventListener('click', (e) => {
         if (window.innerWidth <= 1024) {
             if (!sidebar.contains(e.target) && !toggleBtn.contains(e.target)) {
@@ -555,4 +677,32 @@ function initCart() {
             }
         }
     });
+
+    // Cerrar con tecla Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+            sidebar.classList.remove('open');
+        }
+    });
 }
+
+/* ── 18. MEJORA: TOUCH FEEDBACK PARA BOTONES EN MÓVILES ── */
+document.addEventListener('touchstart', () => {}, { passive: true });
+
+/* ── 19. INICIALIZACIÓN ADICIONAL ── */
+// Llamar a initCounters nuevamente por si se cargan dinámicamente
+document.addEventListener('DOMContentLoaded', () => {
+    initCounters();
+});
+
+// Exponer funciones globalmente para depuración si es necesario
+window.dondJavier = {
+    pedido,
+    agregarAlPedido,
+    eliminarDelPedido,
+    actualizarCarrito,
+    abrirSelectorProducto,
+    cerrarSelector
+};
+
+console.log('✅ Dond\' Javier — script cargado correctamente (v3.6.0)');
