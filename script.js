@@ -253,7 +253,7 @@ function abrirSelectorProducto(productData) {
         detailImage.alt = productData.nombre;
         detailImage.style.display = 'block';
     } else {
-        detailImage.src = 'assets/platos/placeholder-plato.jpg';
+        detailImage.src = 'assets/placeholder-plato.jpg';
         detailImage.alt = 'Producto';
         detailImage.style.display = 'block';
     }
@@ -435,77 +435,77 @@ document.getElementById('cartSendWhatsApp')?.addEventListener('click', () => {
 /* ── 12. MAPEO DE IMÁGENES PARA PRODUCTOS ── */
 const productImageMap = {
     // ── Para Picar ──
-    'Ceviche de Filete': 'assets/platos/Ceviche Filete.jpg',
-    'Ceviche Mixto': 'assets/platos/Ceviche Mixto.jpg',
-    'Ceviche Mixto c/ Conchas': 'assets/platos/ceviche-mixto-conchas.jpg',
-    'Ceviche de Congrio': 'assets/platos/ceviche-congrio.jpg',
-    'Ceviche de Caballa': 'assets/platos/ceviche-caballa.jpg',
-    'Ceviche de Conchas Negras': 'assets/platos/ceviche-conchas-negras.jpg',
-    'Ceviche de Filete y Conchas N.': 'assets/platos/ceviche-filete-conchas.jpg',
-    'Tiradito de Filete': 'assets/platos/tiradito-filete.jpg',
-    'Causa c/ Langostino': 'assets/platos/causa-langostino.jpg',
-    'Causa c/ Pollo': 'assets/platos/causa-pollo.jpg',
+    'Ceviche de Filete': 'assets/Ceviche Filete.jpg',
+    'Ceviche Mixto': 'assets/Ceviche Mixto.jpg',
+    'Ceviche Mixto c/ Conchas': 'assets/ceviche-mixto-conchas.jpg',
+    'Ceviche de Congrio': 'assets/ceviche-congrio.jpg',
+    'Ceviche de Caballa': 'assets/ceviche-caballa.jpg',
+    'Ceviche de Conchas Negras': 'assets/ceviche-conchas-negras.jpg',
+    'Ceviche de Filete y Conchas N.': 'assets/ceviche-filete-conchas.jpg',
+    'Tiradito de Filete': 'assets/tiradito-filete.jpg',
+    'Causa c/ Langostino': 'assets/causa-langostino.jpg',
+    'Causa c/ Pollo': 'assets/causa-pollo.jpg',
 
     // ── Rondas ──
-    'Ronda Criolla': 'assets/platos/ronda-criolla.jpg',
-    'Ronda Marina': 'assets/platos/ronda-marina.jpg',
-    'Ronda Mar y Tierra': 'assets/platos/ronda-mar-tierra.jpg',
-    'Ronda de Barrio': 'assets/platos/ronda-barrio.jpg',
-    'Costillas de Cerdo': 'assets/platos/costillas-cerdo.jpg',
-    'Seco de Chavelo': 'assets/platos/seco-chavelo.jpg',
+    'Ronda Criolla': 'assets/ronda-criolla.jpg',
+    'Ronda Marina': 'assets/ronda-marina.jpg',
+    'Ronda Mar y Tierra': 'assets/ronda-mar-tierra.jpg',
+    'Ronda de Barrio': 'assets/ronda-barrio.jpg',
+    'Costillas de Cerdo': 'assets/costillas-cerdo.jpg',
+    'Seco de Chavelo': 'assets/seco-chavelo.jpg',
 
     // ── Duos y Trios ──
-    'Duo Marino / Criollo': 'assets/platos/duo-marino-criollo.jpg',
-    'Duo Marino (Ceviche y Arroz)': 'assets/platos/duo-marino-ceviche-arroz.jpg',
-    'Duo Marino (Ceviche y Chicharrón)': 'assets/platos/duo-marino-ceviche-chicharron.jpg',
-    'Trio Marino': 'assets/platos/trio-marino.jpg',
-    'Trio Marino / Criollo': 'assets/platos/trio-marino-criollo.jpg',
+    'Duo Marino / Criollo': 'assets/duo-marino-criollo.jpg',
+    'Duo Marino (Ceviche y Arroz)': 'assets/duo-marino-ceviche-arroz.jpg',
+    'Duo Marino (Ceviche y Chicharrón)': 'assets/duo-marino-ceviche-chicharron.jpg',
+    'Trio Marino': 'assets/trio-marino.jpg',
+    'Trio Marino / Criollo': 'assets/trio-marino-criollo.jpg',
 
     // ── Crocantes ──
-    'Chicharrón de Pollo': 'assets/platos/chicharron-pollo.jpg',
-    'Chicharrón de Pescado': 'assets/platos/chicharron-pescado.jpg',
-    'El Chicharrón Mixto': 'assets/platos/Chicharron Mixto.jpg',
-    'Jalea Mixta': 'assets/platos/Jalea Mixta.jpg',
-    'Cabrilla Frita c/ Yuca o Patacones': 'assets/platos/cabrilla-frita.jpg',
+    'Chicharrón de Pollo': 'assets/chicharron-pollo.jpg',
+    'Chicharrón de Pescado': 'assets/chicharron-pescado.jpg',
+    'El Chicharrón Mixto': 'assets/Chicharron Mixto.jpg',
+    'Jalea Mixta': 'assets/Jalea Mixta.jpg',
+    'Cabrilla Frita c/ Yuca o Patacones': 'assets/cabrilla-frita.jpg',
 
     // ── Engreídos Marinos ──
-    'Parihuela con Cabrilla': 'assets/platos/Parihuela Cabrilla.jpg',
-    'Parihuela con Mero': 'assets/platos/parihuela-mero.jpg',
-    'Sudado de Mero': 'assets/platos/sudado-mero.jpg',
-    'Sudado de Cabrillón': 'assets/platos/sudado-cabrillon.jpg',
-    'Chupe de Cangrejo': 'assets/platos/chupe-cangrejo.jpg',
-    'Sudado de Cabrilla': 'assets/platos/sudado-cabrilla.jpg',
-    'Arroz con Mariscos': 'assets/platos/arroz-mariscos.jpg',
-    'Arroz con Conchas': 'assets/platos/arroz-conchas.jpg',
+    'Parihuela con Cabrilla': 'assets/Parihuela Cabrilla.jpg',
+    'Parihuela con Mero': 'assets/parihuela-mero.jpg',
+    'Sudado de Mero': 'assets/sudado-mero.jpg',
+    'Sudado de Cabrillón': 'assets/sudado-cabrillon.jpg',
+    'Chupe de Cangrejo': 'assets/chupe-cangrejo.jpg',
+    'Sudado de Cabrilla': 'assets/sudado-cabrilla.jpg',
+    'Arroz con Mariscos': 'assets/arroz-mariscos.jpg',
+    'Arroz con Conchas': 'assets/arroz-conchas.jpg',
 
     // ── Carnes y Pollo ──
-    'Lomo Saltado c/ Arroz y Papa': 'assets/platos/lomo-saltado.jpg',
-    'Pollo Saltado c/ Arroz y Papa': 'assets/platos/pollo-saltado.jpg',
-    'Fetuccini a la H. con Lomo Saltado': 'assets/platos/fetuccini-lomo.jpg',
+    'Lomo Saltado c/ Arroz y Papa': 'assets/lomo-saltado.jpg',
+    'Pollo Saltado c/ Arroz y Papa': 'assets/pollo-saltado.jpg',
+    'Fetuccini a la H. con Lomo Saltado': 'assets/fetuccini-lomo.jpg',
     'Milanesa de Pollo c/ Arroz y Papa': 'assets/platos/milanesa-pollo.jpg',
-    'Cecina c/ Arroz y Patacones': 'assets/platos/cecina.jpg',
+    'Cecina c/ Arroz y Patacones': 'assets/cecina.jpg',
 
     // ── Toque Chifa ──
-    'Chaufa de Pollo': 'assets/platos/chaufa-pollo.jpg',
-    'Chaufa de Tres Sabores': 'assets/platos/chaufa-tres-sabores.jpg',
-    'Chaufa de Mariscos': 'assets/platos/Chaufa Mariscos.jpg',
-    'Aeropuerto': 'assets/platos/aeropuerto-chifa.jpg',
-    'Alitas Agridulce o Acevichada': 'assets/platos/alitas-agridulce.jpg',
-    'Costillas Agridulce': 'assets/platos/costillas-agridulce.jpg',
+    'Chaufa de Pollo': 'assets/chaufa-pollo.jpg',
+    'Chaufa de Tres Sabores': 'assets/chaufa-tres-sabores.jpg',
+    'Chaufa de Mariscos': 'assets/Chaufa Mariscos.jpg',
+    'Aeropuerto': 'assets/aeropuerto-chifa.jpg',
+    'Alitas Agridulce o Acevichada': 'assets/alitas-agridulce.jpg',
+    'Costillas Agridulce': 'assets/costillas-agridulce.jpg',
 
     // ── Cilindro ──
-    'Pollo Entero': 'assets/platos/pollo-entero-cilindro.jpg',
-    '1/2 Pollo': 'assets/platos/medio-pollo-cilindro.jpg',
-    '1/4 Pollo': 'assets/platos/cuarto-pollo-cilindro.jpg',
-    'Mostrito': 'assets/platos/mostrito.jpg',
-    'Broaster': 'assets/platos/broaster.jpg',
-    'Porción de Arroz': 'assets/platos/porcion-arroz.jpg',
+    'Pollo Entero': 'assets/pollo-entero-cilindro.jpg',
+    '1/2 Pollo': 'assets/medio-pollo-cilindro.jpg',
+    '1/4 Pollo': 'assets/cuarto-pollo-cilindro.jpg',
+    'Mostrito': 'assets/mostrito.jpg',
+    'Broaster': 'assets/broaster.jpg',
+    'Porción de Arroz': 'assets/porcion-arroz.jpg',
 
     // ── Bebidas ──
-    'Limonada Frozen 1 Lt': 'assets/platos/Limonada Frozen.png',
-    'Jugos de Fruta Natural': 'assets/platos/jugos-naturales.jpg',
-    'Gaseosa': 'assets/platos/gaseosa.jpg',
-    'Cerveza': 'assets/platos/cerveza.jpg'
+    'Limonada Frozen 1 Lt': 'assets/Limonada Frozen.png',
+    'Jugos de Fruta Natural': 'assets/jugos-naturales.jpg',
+    'Gaseosa': 'assets/gaseosa.jpg',
+    'Cerveza': 'assets/cerveza.jpg'
 };
 
 /* ── 13. CLIC EN FILAS DE TABLA (con imagen específica) ── */
@@ -558,7 +558,7 @@ function initTableClickEvents() {
                 descripcion = celdas[descIndex].textContent.trim();
             }
 
-            let imagen = productImageMap[nombre] || 'assets/platos/placeholder-plato.jpg';
+            let imagen = productImageMap[nombre] || 'assets/placeholder-plato.jpg';
 
             abrirSelectorProducto({
                 nombre: nombre,
